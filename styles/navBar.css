@@ -1,0 +1,13 @@
+.navItem{
+    border-radius: 22px;
+    transition: background-color 0.5s, color 0.4s
+}
+.navItem:hover {
+    color :  #de4333;
+    background-color: #cff7d5
+}
+.navActive{
+    border-radius: 22px;
+    color :  white;
+    background : #696d23
+}
