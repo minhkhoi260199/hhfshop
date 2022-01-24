@@ -31,11 +31,13 @@ function CartMobileBar(){
                     onClose={onClose}
                     isOpen={isOpen}
                     motionPreset='slideInBottom'
+                    
             >
                 <ModalOverlay />
-                <ModalContent p={0} pt={0} >
+                <ModalContent p={0} pt={0} borderRadius='14px' bg='none'>
                     <Cart />
-                    <Button borderRadius='14' p={2} h={12} w='100%' mt={1}
+                    <Button borderRadius='14' border='1px #d7d7d7 solid'
+                            p={2} h={12} w='100%' mt={1}
                             bg='#df5854' textColor='#f5f4ed' fontWeight='bold'
                             textAlign='center' 
                             onClick={onClose}

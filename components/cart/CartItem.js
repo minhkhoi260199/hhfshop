@@ -35,7 +35,7 @@ function CartItem(props){
 
     return(
         <Box borderBottom='1px #d7d7d7 solid'
-             p={2} textColor='#595243'
+             p={2} textColor='#595243' bg='#f9f9f7'
              position='relative'
         >
             <Tooltip hasArrow label='Bỏ sản phẩm' bg='pink.400'>

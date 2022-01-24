@@ -33,7 +33,7 @@ function Cart(){
                     return(<CartItem key={item.idProduct} cartItem={item} />)
                 })}
                 <Flex borderRadius='0px 0px 14px 14px' p={4}
-                     textColor='#595243'
+                     textColor='#595243' bg='#f9f9f7'
                 >
                     <Text fontSize='lg'>Tổng tiền:</Text>
                     <Spacer/>
@@ -42,9 +42,10 @@ function Cart(){
                     >140.000</Text>đ
                 </Flex>
             </Box>
-            <Button borderRadius='14' p={2} h={12} bg='#5f5438'
-                 textColor='#f5f4ed' fontWeight='bold'
-                 textAlign='center' w='100%'
+            <Button borderRadius='14' border='1px #d7d7d7 solid'
+                    p={2} h={12} bg='#5f5438'
+                    textColor='#f5f4ed' fontWeight='bold'
+                    textAlign='center' w='100%'
             >
                 <Text fontSize='xl'>Thanh Toán</Text>
             </Button>
