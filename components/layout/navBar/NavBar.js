@@ -24,16 +24,16 @@ const tabs = [
         "path" : "/info/comingSoon"
     },{
         "name" : "Giới thiệu",
-        "path" : "/about"
+        "path" : "/info/comingSoon"
     },{
         "name" : "Liên hệ",
-        "path" : "/contact"
+        "path" : "/info/comingSoon"
     }
 ]
 
 function NavBar(){
 
-    const [state, setState] = useState("/");
+    const [state, setState] = useState("");
 
     return(
         <Box bg='#ffde46' w='100%' color='#5f5338' fontWeight='bold'>
@@ -44,7 +44,7 @@ function NavBar(){
                            margin='auto'
                            boxSize='70px'
                            objectFit='cover'
-                           src='./logo.jpg'
+                           src='../logo.jpg'
                            alt='Hiệp Hoà Farm'
                        />
                    </Box>
@@ -57,8 +57,8 @@ function NavBar(){
                                    <GridItem w='100%' margin='auto' key={tab.path}>
                                        <Link href={tab.path}>
                                            <Center h='9' textAlign='center'
-                                                   onClick={() => setState(tab.path)}
-                                                   className={state===tab.path?('navActive'):('navItem')}
+                                                   onClick={() => setState(tab.name)}
+                                                   className={state===tab.name?('navActive'):('navItem')}
                                            >
                                                {tab.name}
                                            </Center>

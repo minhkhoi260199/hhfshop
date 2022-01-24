@@ -1,4 +1,4 @@
-import {Box, Flex, Spacer, Text} from "@chakra-ui/react";
+import {Box, Button, Flex, Spacer, Text} from "@chakra-ui/react";
 import {EditIcon} from "@chakra-ui/icons";
 import CartItem from "./CartItem";
 
@@ -42,12 +42,12 @@ function Cart(){
                     >140.000</Text>đ
                 </Flex>
             </Box>
-            <Box borderRadius='14' p={2} h={12} bg='#5f5438'
+            <Button borderRadius='14' p={2} h={12} bg='#5f5438'
                  textColor='#f5f4ed' fontWeight='bold'
-                 justifyContent='center' textAlign='center'
+                 textAlign='center' w='100%'
             >
                 <Text fontSize='xl'>Thanh Toán</Text>
-            </Box>
+            </Button>
         </>
     )
 }
