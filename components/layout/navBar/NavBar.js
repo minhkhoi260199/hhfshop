@@ -24,7 +24,7 @@ const tabs = [
         "path" : "/info/comingSoon"
     },{
         "name" : "Giới thiệu",
-        "path" : "/aboutUs"
+        "path" : "/about"
     },{
         "name" : "Liên hệ",
         "path" : "/contact"
@@ -87,7 +87,7 @@ function NavBar(){
                                        icon={<HamburgerIcon />}
                                        variant='outline'
                                    />
-                                   <MenuList background="#a6e9ca">
+                                   <MenuList background="#a6e9ca" zIndex={2}>
                                        {tabs.map(tab => {
                                            return(
                                             <Link href={tab.path} key={tab.path}>

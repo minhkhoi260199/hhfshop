@@ -40,7 +40,7 @@ function CartItem(props){
         >
             <Tooltip hasArrow label='Bỏ sản phẩm' bg='pink.400'>
                 <Box p='0' as='button' bottom='0' right='0' position='absolute'>
-                    <SmallCloseIcon fontSize='22px' color='red'/>
+                    <SmallCloseIcon fontSize='25px' color='red'/>
                 </Box>
             </Tooltip>
             <Grid templateColumns='repeat(14, 1fr)'>
@@ -57,7 +57,7 @@ function CartItem(props){
                         </Square>
                     </Flex>
                 </GridItem>
-                <GridItem pl={3} pr={2} colSpan='8'>
+                <GridItem pl={3} pr={2} colSpan='7'>
                     <Text fontSize='lg' fontWeight='bold'>{item.productName}</Text>
                     <Flex m={1} maxW='100px' bg='#ffda7b'
                           borderRadius='8'>
@@ -73,7 +73,7 @@ function CartItem(props){
                         >+</Button>
                     </Flex>
                 </GridItem>
-                <GridItem colSpan='3' >
+                <GridItem colSpan='4' >
                     <Text fontSize={{base: 'sm', md:'xs', lg:'sm'}}>{numberWithCommas(item.productPrice)}đ</Text>
                     <Text fontSize={{base: 'sm', md:'xs', lg:'sm'}}>x&nbsp;{quantity}&nbsp;{item.saleUnit}</Text>
                     <Text fontSize={{base: 'sm', md:'xs', lg:'sm'}}

@@ -1,12 +1,12 @@
 import {
     Box,
-    Button, Center,
+    Button,
     Flex,
     Grid,
     GridItem,
     Image,
     Input,
-    SimpleGrid,
+    Spacer,
     Square,
     Text,
     useNumberInput
@@ -15,7 +15,7 @@ import {useState} from "react";
 import {ArrowRightIcon} from "@chakra-ui/icons";
 
 function Item(props){
-    const product = props.product;
+    const { product } = props;
     const [quantity, setQuantity] = useState(1)
 
     const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
@@ -35,16 +35,14 @@ function Item(props){
              borderRadius='14' marginBottom={4}
         >
             <Grid templateColumns='repeat(10, 1fr)'>
-                <GridItem colSpan={{ base: '5', md: '4' }} p={{ base: '0', md: '1' }}
+                <GridItem colSpan={{ base: '5', md: '4' }} 
+                        //   p={{ base: '0', md: '1' }}
                 >
                     <Flex>
                         <Square flex='1'>
                             <Image
                                 borderRadius='14'
-                                // maxWidth='100%'
-                                // boxSize='220px'
-                                p={{ base: '0', lg: '2' }}
-                                objectFit='cover'
+                                // objectFit='cover'
                                 src={'./images/'+product.gallery}
                                 alt={product.gallery}
                             />
@@ -70,40 +68,54 @@ function Item(props){
                         </Flex>
                     </Box>
                 </GridItem>
-                <GridItem colSpan={{ base: '5', md: '6' }} paddingLeft={3} paddingTop={0} >
-                    <SimpleGrid columns='1'>
-                        <Text paddingTop={0}
-                              fontSize={{ base: 'lg', md:'2xl', lg: '3xl' }}
-                              fontWeight='bold'>{product.productName}</Text>
-                        <Text paddingTop={0} minH='125px'
-                              fontSize={{ base: 'xs', md:'sm', lg: 'md' }}
-                        >{product.description}</Text>
+                <GridItem colSpan={{ base: '5', md: '6' }} 
+                            pl={3} paddingBottom={{base:'0', md:'75px'}} 
+                            position='relative'
+                >
+                    <Text paddingTop={0}
+                            fontSize={{ base: 'lg', md:'2xl', lg: '3xl' }}
+                            fontWeight='bold'
+                        >{product.productName}
+                    </Text>
+                    <Text paddingTop={0} minH='125px'
+                            fontSize={{ base: 'xs', md:'sm', lg: 'md' }}
+                        >{product.description}
+                    </Text>
+                    <Box w='100%'
+                        position='absolute' bottom='0'>
                         <Box display={{base:'none', md:'block'}}>
-                        <SimpleGrid marginBottom='0' columns='2' >
-                            <Text fontWeight='bold' fontSize='md'
-                            >Giá lẻ: {product.productPrice}đ/{product.saleUnit}</Text>
-                            <Flex margin='auto' maxW='150px'>
-                                    <Button {...dec}
-                                            size='sm' bg='#f9f9f7'
-                                    >-</Button>
-                                    <Input {...input}
-                                           textAlign='center' bg='#f9f9f7' size='sm'
-                                           minW='40px'  p='1' borderRadius='20px'
-                                    />
-                                    <Button {...inc}
-                                            size='sm' bg='#f9f9f7'
-                                    >+</Button>
+                            <Flex>
+                                <Text fontWeight='bold' fontSize='md'
+                                >Giá lẻ: {product.productPrice}đ/{product.saleUnit}
+                                </Text>
+                                <Spacer />
+                                <Box pr={3}>
+                                    <Flex maxW='150px' >
+                                        <Button {...dec}
+                                                size='sm' bg='#f9f9f7'
+                                        >-</Button>
+                                        <Input {...input}
+                                            textAlign='center' bg='#f9f9f7' size='sm'
+                                            minW='40px'  p='1' borderRadius='20px'
+                                        />
+                                        <Button {...inc}
+                                                size='sm' bg='#f9f9f7'
+                                        >+</Button>
+                                    </Flex>
+                                    <Button bg='#f9f9f7' textColor='#5d5745'
+                                            mt='2px' w='150px' size='sm'
+                                    ><ArrowRightIcon/>&nbsp; Mua Ngay</Button>
+                                </Box>
                             </Flex>
-                        </SimpleGrid>
                         </Box>
-                        <Box justifySelf='end' paddingTop={1} width={{base:'100%', md:'50%'}}>
-                            <Center>
-                                <Button bg='#f9f9f7' textColor='#5d5745'
-                                        w='150px' size='sm'
-                                ><ArrowRightIcon/>&nbsp; Mua Ngay</Button>
-                            </Center>
-                        </Box>
-                    </SimpleGrid>
+                    </Box>
+                    <Box display={{base:'block', md:'none'}}
+                        position='absolute' bottom='0' right='0'
+                    >
+                        <Button bg='#f9f9f7' textColor='#5d5745'
+                                w='110px' size='sm'
+                        ><ArrowRightIcon/>&nbsp; Mua Ngay</Button>
+                    </Box>
                 </GridItem>
             </Grid>
         </Box>
