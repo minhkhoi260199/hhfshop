@@ -1,8 +1,10 @@
-import '../styles/navBar.css'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 import {ChakraProvider, extendTheme} from "@chakra-ui/react";
+import { Provider } from 'react-redux';
 
+import store from '../store/store'
 import Layout from '../components/layout/Layout'
+import '../styles/navBar.css'
 
 const breakpoints = createBreakpoints({
   sm: '30em',
@@ -16,9 +18,11 @@ const theme = extendTheme({ breakpoints })
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Provider store={store}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
     </ChakraProvider>
   )
 }

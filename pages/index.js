@@ -12,7 +12,7 @@ const products = [
     productName: "Bơ sáp",
     description:
       "Bơ loại một không rẻ nhưng siêu ngon siêu chất lượng không bơ nào sánh bằng. Đảm bảo đáng đồng tiền bát gạo luôn !!",
-    productPrice: "100.000",
+    productPrice: "100000",
     saleUnit: "KG",
     gallery: "bo.jpg",
   },
@@ -21,7 +21,7 @@ const products = [
     productName: "Bơ bình dân",
     description:
       "Siêu ngon bổ rẻ, giác ả phải chăng siêu chất lượng được tuyển chọn từ miệt vườn",
-    productPrice: "50.000",
+    productPrice: "50000",
     saleUnit: "KG",
     gallery: "bo2.jpg",
   },
@@ -30,7 +30,7 @@ const products = [
     productName: "Bơ 1",
     description:
       "Bơ loại một không rẻ nhưng siêu ngon siêu chất lượng không bơ nào sánh bằng. Đảm bảo đáng đồng tiền bát gạo luôn !!",
-    productPrice: "1.000.000",
+    productPrice: "1000000",
     saleUnit: "KG",
     gallery: "bo4.jpg",
   },

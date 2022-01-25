@@ -54,7 +54,7 @@ function NavBar(){
                        <Grid templateColumns='repeat(4, 1fr)' gap={2}>
                            {tabs.map(tab => {
                                return(
-                                   <GridItem w='100%' margin='auto' key={tab.path}>
+                                   <GridItem w='100%' margin='auto' key={tab.name}>
                                        <Link href={tab.path}>
                                            <Center h='9' textAlign='center'
                                                    onClick={() => setState(tab.name)}
@@ -90,7 +90,7 @@ function NavBar(){
                                    <MenuList background="#a6e9ca" zIndex={2}>
                                        {tabs.map(tab => {
                                            return(
-                                            <Link href={tab.path} key={tab.path}>
+                                            <Link href={tab.path} key={tab.name}>
                                             <MenuItem >{tab.name}</MenuItem>
                                                </Link>
                                            )

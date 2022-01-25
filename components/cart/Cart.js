@@ -1,24 +1,22 @@
 import {Box, Button, Flex, Spacer, Text} from "@chakra-ui/react";
 import {EditIcon} from "@chakra-ui/icons";
 import CartItem from "./CartItem";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import { selectCart } from "./cartSlice";
 
-const cart = [
-    {
-        "idProduct" : "2",
-        "productName" : "Bơ bình dân",
-        "productPrice" : "50000",
-        "saleUnit" : "KG",
-        "gallery" : "bo2.jpg",
-    },{
-        "idProduct" : "3",
-        "productName" : "Bơ 1",
-        "productPrice" : "100000",
-        "saleUnit" : "KG",
-        "gallery" : "bo.jpg"
-    }
-]
 
 function Cart(){
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    const [amouth, setAmouth] = useState(0);
+
+    const cart = useSelector(selectCart)
+    // console.log("Cart: " + JSON.stringify(cart));
+
     return(
         <>
             <Box mb={1} border='1px #d7d7d7 solid' borderRadius='14'>
@@ -39,7 +37,7 @@ function Cart(){
                     <Spacer/>
                     <Text fontSize='lg' fontWeight='bold'
                           justifySelf='end'
-                    >140.000</Text>đ
+                    >{numberWithCommas(amouth)}</Text>đ
                 </Flex>
             </Box>
             <Button borderRadius='14' border='1px #d7d7d7 solid'

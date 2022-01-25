@@ -14,6 +14,8 @@ import {SmallCloseIcon} from "@chakra-ui/icons";
 
 function CartItem(props){
 
+    const item = props.cartItem
+
     const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
         useNumberInput({
             step: 1,
@@ -24,12 +26,12 @@ function CartItem(props){
     const inc = getIncrementButtonProps()
     const dec = getDecrementButtonProps()
     const input = getInputProps({ isReadOnly: true })
+    input.value = item.quantity
 
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    const item = props.cartItem
     const quantity = Number(input.value)
     const total = Number(item.productPrice)*quantity
 
