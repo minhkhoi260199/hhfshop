@@ -12,8 +12,8 @@ import {
     useNumberInput
 } from "@chakra-ui/react";
 import {ArrowRightIcon} from "@chakra-ui/icons";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, selectCart } from "../cart/cartSlice"
+import { useDispatch } from "react-redux";
+import { addToCart } from "../cart/cartSlice"
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -42,8 +42,6 @@ function Item(props){
         "gallery" : product.gallery,
         "quantity" : input.value,
     }
-
-    // const cart = useSelector(selectCart)
 
     const handleSubmit = () =>{
         dispatch(addToCart(cartItem));

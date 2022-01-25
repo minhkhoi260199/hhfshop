@@ -16,24 +16,24 @@ function CartItem(props){
 
     const item = props.cartItem
 
-    const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
-        useNumberInput({
-            step: 1,
-            defaultValue: 1,
-            min: 1,
-            max: 9,
-        })
-    const inc = getIncrementButtonProps()
-    const dec = getDecrementButtonProps()
-    const input = getInputProps({ isReadOnly: true })
-    input.value = item.quantity
+    // const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
+    //     useNumberInput({
+    //         step: 1,
+    //         // defaultValue: item.quantity,
+    //         min: 1,
+    //         max: 9,
+    //     })
+    // const inc = getIncrementButtonProps()
+    // const dec = getDecrementButtonProps()
+    // const input = getInputProps({ isReadOnly: true })
+    // input.value = item.quantity
 
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    const quantity = Number(input.value)
-    const total = Number(item.productPrice)*quantity
+    // const quantity = Number(input.value)
+    const total = Number(item.productPrice)*item.quantity
 
     return(
         <Box borderBottom='1px #d7d7d7 solid'
@@ -63,21 +63,24 @@ function CartItem(props){
                     <Text fontSize='lg' fontWeight='bold'>{item.productName}</Text>
                     <Flex m={1} maxW='100px' bg='#ffda7b'
                           borderRadius='8'>
-                        <Button {...dec}
-                                size='xs' bg='#ffda7b'
+                        <Button 
+                        // <Button {...dec}
+                        size='xs' bg='#ffda7b'
                         >-</Button>
-                        <Input {...input}
-                               size='xs' bg='#f9f9f7' textAlign='center'
+                        <Input value={item.quantity} type='number'
+                        // <Input {...input}
+                        size='xs' bg='#f9f9f7' textAlign='center'
                                minW='30px'  p='1' fontSize='1rem'
                         />
-                        <Button {...inc}
-                                size='xs' bg='#ffda7b'
+                        <Button 
+                        // <Button {...inc}
+                        size='xs' bg='#ffda7b'
                         >+</Button>
                     </Flex>
                 </GridItem>
                 <GridItem colSpan='4' >
                     <Text fontSize={{base: 'sm', md:'xs', lg:'sm'}}>{numberWithCommas(item.productPrice)}đ</Text>
-                    <Text fontSize={{base: 'sm', md:'xs', lg:'sm'}}>x&nbsp;{quantity}&nbsp;{item.saleUnit}</Text>
+                    <Text fontSize={{base: 'sm', md:'xs', lg:'sm'}}>x&nbsp;{item.quantity}&nbsp;{item.saleUnit}</Text>
                     <Text fontSize={{base: 'sm', md:'xs', lg:'sm'}}
                           p={1} borderTop='1px solid #d7d7d7'
                     >{numberWithCommas(total)}đ</Text>

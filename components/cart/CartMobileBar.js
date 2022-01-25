@@ -1,10 +1,22 @@
 import {Box, Button, Center, Flex, Grid, GridItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure} from "@chakra-ui/react";
 import {EditIcon} from "@chakra-ui/icons";
 import Cart from "./Cart";
+import { useSelector } from "react-redux";
+import { selectCart } from "./cartSlice";
 
 function CartMobileBar(){
 
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    const cart = useSelector(selectCart)
+
+    const amouth = cart.reduce((total, item)=>{
+        return total += Number(item.productPrice)*Number(item.quantity)
+    },0)
 
     return(
         <Box display={{base: 'block', md:'none'}}>
@@ -14,8 +26,8 @@ function CartMobileBar(){
             >
                 <Grid templateColumns='repeat(2, 1fr)' w='100%'>
                     <GridItem colSpan={1} fontSize='md'>
-                        <Text textColor='black'><strong>Tổng cộng:</strong>&nbsp;(2 món)</Text>
-                        <Text fontWeight='bold' textColor='red'>140.000đ</Text>
+                        <Text textColor='black'><strong>Tổng cộng:</strong>&nbsp;({cart.length} món)</Text>
+                        <Text fontWeight='bold' textColor='red'>{numberWithCommas(amouth)}đ</Text>
                     </GridItem>
                     <GridItem colSpan={1}>
                         <Center>

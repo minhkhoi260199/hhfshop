@@ -2,7 +2,6 @@ import {Box, Button, Flex, Spacer, Text} from "@chakra-ui/react";
 import {EditIcon} from "@chakra-ui/icons";
 import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
-import { useState } from "react";
 import { selectCart } from "./cartSlice";
 
 
@@ -12,10 +11,13 @@ function Cart(){
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    const [amouth, setAmouth] = useState(0);
+    // const [amouth, setAmouth] = useState(0);
 
     const cart = useSelector(selectCart)
-    // console.log("Cart: " + JSON.stringify(cart));
+
+    const amouth = cart.reduce((total, item)=>{
+        return total += Number(item.productPrice)*Number(item.quantity)
+    },0)
 
     return(
         <>
@@ -25,7 +27,7 @@ function Cart(){
                       bg='#5f5438' textColor='#f5f4ed' >
                     <Text paddingLeft={3} fontWeight='bold' fontSize='xl'><EditIcon/>&nbsp;Đơn hàng</Text>
                     &nbsp;
-                    <Text fontSize='md'>(2 món)</Text>
+                    <Text fontSize='md'>({cart.length} món)</Text>
                 </Flex>
                 {cart.map(item=>{
                     return(<CartItem key={item.idProduct} cartItem={item} />)
