@@ -3,15 +3,9 @@ import {EditIcon} from "@chakra-ui/icons";
 import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
 import { selectCart } from "./cartSlice";
-
+import {numberWithCommas} from "../helper/numberWithCommas"
 
 function Cart(){
-
-    function numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-
-    // const [amouth, setAmouth] = useState(0);
 
     const cart = useSelector(selectCart)
 

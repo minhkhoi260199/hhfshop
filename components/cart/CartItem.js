@@ -8,31 +8,17 @@ import {
     Input,
     Square,
     Text, Tooltip,
-    useNumberInput
 } from "@chakra-ui/react";
 import {SmallCloseIcon} from "@chakra-ui/icons";
+import {increment, decrement, removeCartItem} from "../cart/cartSlice"
+import { useDispatch } from "react-redux";
+
+import {numberWithCommas} from "../helper/numberWithCommas"
 
 function CartItem(props){
 
     const item = props.cartItem
-
-    // const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
-    //     useNumberInput({
-    //         step: 1,
-    //         // defaultValue: item.quantity,
-    //         min: 1,
-    //         max: 9,
-    //     })
-    // const inc = getIncrementButtonProps()
-    // const dec = getDecrementButtonProps()
-    // const input = getInputProps({ isReadOnly: true })
-    // input.value = item.quantity
-
-    function numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-
-    // const quantity = Number(input.value)
+    const dispatch = useDispatch();
     const total = Number(item.productPrice)*item.quantity
 
     return(
@@ -41,7 +27,8 @@ function CartItem(props){
              position='relative'
         >
             <Tooltip hasArrow label='Bỏ sản phẩm' bg='pink.400'>
-                <Box p='0' as='button' bottom='0' right='0' position='absolute'>
+                <Box onClick={()=>dispatch(removeCartItem(item.idProduct))}
+                    p='0' as='button' bottom='0' right='0' position='absolute'>
                     <SmallCloseIcon fontSize='25px' color='red'/>
                 </Box>
             </Tooltip>
@@ -63,18 +50,15 @@ function CartItem(props){
                     <Text fontSize='lg' fontWeight='bold'>{item.productName}</Text>
                     <Flex m={1} maxW='100px' bg='#ffda7b'
                           borderRadius='8'>
-                        <Button 
-                        // <Button {...dec}
-                        size='xs' bg='#ffda7b'
+                        <Button onClick={()=>dispatch(decrement(item.idProduct))}
+                                size='xs' bg='#ffda7b'
                         >-</Button>
-                        <Input value={item.quantity} type='number'
-                        // <Input {...input}
-                        size='xs' bg='#f9f9f7' textAlign='center'
+                        <Input value={item.quantity} type='number' readOnly={true}
+                                size='xs' bg='#f9f9f7' textAlign='center'
                                minW='30px'  p='1' fontSize='1rem'
                         />
-                        <Button 
-                        // <Button {...inc}
-                        size='xs' bg='#ffda7b'
+                        <Button onClick={()=>dispatch(increment(item.idProduct))}
+                                size='xs' bg='#ffda7b'
                         >+</Button>
                     </Flex>
                 </GridItem>

@@ -4,23 +4,51 @@ export const counterSlice = createSlice({
   name: 'cart',
   initialState: {
     value: [],
+    amouth: 0,
   },
   reducers: {
     addToCart: (state, action) => {
-      console.log("Old state:"+JSON.stringify(state.value));
-      console.log("Payload :"+JSON.stringify(action.payload));
+
+      let flag = true
+      state.value.map((item, key) => {
+        //check for newCartItem or not
+        if(item.idProduct == action.payload.idProduct){
+          flag = false
+          state.value[key].quantity = Number(item.quantity)+Number(action.payload.quantity)
+        }
+      });
+      // console.log("New state:"+JSON.stringify(state.value));
       
-      let result = state.value.filter((item)=>{
-          if(item.idProduct !== action.payload.idProduct){
-            return item;
-          }
-      })
-      return { value : result.concat(action.payload) }
+      if(flag){ 
+        return { value : state.value.concat(action.payload) }
+      }
+
     },
+    removeCartItem: (state, action) => {
+      state.value.some((item, index) => {
+        if(item.idProduct == action.payload){
+          state.value.splice(index,1);
+        }
+      })
+    },
+    increment: (state, action) => {
+      state.value.forEach((item, index) => {
+        if(item.idProduct == action.payload){
+          state.value[index].quantity++
+        }
+      })
+    },
+    decrement: (state, action) => {
+      state.value.forEach((item, index) => {
+        if(item.idProduct == action.payload){
+          state.value[index].quantity--
+        }
+      })
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addToCart } = counterSlice.actions
+export const { addToCart, increment, decrement, removeCartItem } = counterSlice.actions
 export const selectCart = state => state.cart.value;
 export default counterSlice.reducer

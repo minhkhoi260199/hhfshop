@@ -12,12 +12,11 @@ import {
     useNumberInput
 } from "@chakra-ui/react";
 import {ArrowRightIcon} from "@chakra-ui/icons";
+
 import { useDispatch } from "react-redux";
 import { addToCart } from "../cart/cartSlice"
 
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+import {numberWithCommas} from "../helper/numberWithCommas"
 
 function Item(props){
     const { product } = props

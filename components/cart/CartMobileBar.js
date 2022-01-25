@@ -1,16 +1,13 @@
-import {Box, Button, Center, Flex, Grid, GridItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure} from "@chakra-ui/react";
+import {Box, Button, Center, Flex, Grid, GridItem, Modal, ModalContent, ModalOverlay, Text, useDisclosure} from "@chakra-ui/react";
 import {EditIcon} from "@chakra-ui/icons";
 import Cart from "./Cart";
 import { useSelector } from "react-redux";
 import { selectCart } from "./cartSlice";
+import {numberWithCommas} from "../helper/numberWithCommas"
 
 function CartMobileBar(){
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-
-    function numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
 
     const cart = useSelector(selectCart)
 
