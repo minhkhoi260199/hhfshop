@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../cart/cartSlice"
 
 import {numberWithCommas} from "../helper/numberWithCommas"
+import { memo } from "react";
 
 function Item(props){
     const { product } = props
@@ -137,4 +138,4 @@ function Item(props){
         </Box>
     )
 }
-export default Item
+export default memo(Item)

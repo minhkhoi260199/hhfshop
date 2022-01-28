@@ -14,6 +14,7 @@ import {increment, decrement, removeCartItem} from "../cart/cartSlice"
 import { useDispatch } from "react-redux";
 
 import {numberWithCommas} from "../helper/numberWithCommas"
+import { memo } from "react";
 
 function CartItem(props){
 
@@ -26,6 +27,7 @@ function CartItem(props){
              p={2} textColor='#595243' bg='#f9f9f7'
              position='relative'
         >
+            {/* {console.log("item id: "+ item.idProduct)} */}
             <Tooltip hasArrow label='Bỏ sản phẩm' bg='pink.400'>
                 <Box onClick={()=>dispatch(removeCartItem(item.idProduct))}
                     p='0' as='button' bottom='0' right='0' position='absolute'>
@@ -73,4 +75,4 @@ function CartItem(props){
         </Box>
     )
 }
-export default CartItem
+export default memo(CartItem)

@@ -5,6 +5,7 @@ import SearchBar from "../components/SearchBar";
 import Item from "../components/item/Item";
 import Cart from "../components/cart/Cart";
 import CartMobileBar from "../components/cart/CartMobileBar";
+import { OrderInfoModal } from "../components/invoice/OrderInfoModal";
 
 const products = [
   {
@@ -66,6 +67,7 @@ export default function Home() {
         </GridItem>
         <CartMobileBar />
       </Grid>
+      <OrderInfoModal />
     </>
   );
 }

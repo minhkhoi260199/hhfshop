@@ -4,6 +4,8 @@ import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
 import { selectCart } from "./cartSlice";
 import {numberWithCommas} from "../helper/numberWithCommas"
+import { useDispatch } from "react-redux";
+import { openAddrModal } from "../invoice/invoiceSlice"
 
 function Cart(){
 
@@ -12,6 +14,8 @@ function Cart(){
     const amouth = cart.reduce((total, item)=>{
         return total += Number(item.productPrice)*Number(item.quantity)
     },0)
+
+    const dispatch = useDispatch();
 
     return(
         <>
@@ -37,11 +41,12 @@ function Cart(){
                 </Flex>
             </Box>
             <Button borderRadius='14' border='1px #d7d7d7 solid'
-                    p={2} h={12} bg='#5f5438'
+                    p={2} h={12} bg='#5f5438' 
                     textColor='#f5f4ed' fontWeight='bold'
-                    textAlign='center' w='100%'
+                    textAlign='center' w='100%' className="browButton"
+                    onClick={()=>dispatch(openAddrModal())}
             >
-                <Text fontSize='xl'>Thanh Toán</Text>
+                <Text fontSize='xl'>Đặt hàng</Text>
             </Button>
         </>
     )

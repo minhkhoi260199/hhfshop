@@ -30,7 +30,7 @@ function CartMobileBar(){
                         <Center>
                             <Button bg='#ed645f' textColor='#f9f9f7'
                                     size='md' margin='auto'
-                                    onClick={onOpen}
+                                    onClick={onOpen} className="redButton"
                             ><EditIcon/>&nbsp; Giỏ hàng</Button>
                         </Center>
                     </GridItem>
@@ -45,14 +45,14 @@ function CartMobileBar(){
                 <ModalOverlay />
                 <ModalContent p={0} pt={0} borderRadius='14px' bg='none'>
                     <Cart />
-                    <Button borderRadius='14' border='1px #d7d7d7 solid'
+                    {/* <Button borderRadius='14' border='1px #d7d7d7 solid'
                             p={2} h={12} w='100%' mt={1}
                             bg='#df5854' textColor='#f5f4ed' fontWeight='bold'
-                            textAlign='center' 
+                            textAlign='center' className="redButton"
                             onClick={onClose}
                     >
                         <Text fontSize='xl'>Đóng giỏ</Text>
-                    </Button>
+                    </Button> */}
                 </ModalContent>
             </Modal>        
         </Box>
