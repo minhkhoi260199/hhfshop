@@ -24,12 +24,12 @@ export const invoiceSlice = createSlice({
     //   }
 
     // },
-    openAddrModal: (state) => state.addrModalFlg = true,
-    closeAddrModal: (state) => state.addrModalFlg = false,
-    openShippingModal: (state) => state.shippingModalFlag = true,
-    closeShippingModal: (state) => state.shippingModalFlag = false,
-    openConfirmModal: (state) => state.confirmModalFlg = true,
-    closeConfirmModal: (state) => state.confirmModalFlg = false,
+    openAddrModal: (state) => {state.addrModalFlag = true},
+    closeAddrModal: (state) => {state.addrModalFlag = false},
+    openShippingModal: (state) => {state.shippingModalFlag = true},
+    closeShippingModal: (state) => {state.shippingModalFlag = false},
+    openConfirmModal: (state) => {state.confirmModalFlag = true},
+    closeConfirmModal: (state) => {state.confirmModalFlag = false},
   },
 })
 
