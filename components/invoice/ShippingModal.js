@@ -1,43 +1,13 @@
 import { ArrowBackIcon, ArrowForwardIcon, EditIcon } from "@chakra-ui/icons"
 import { Box, Button, Flex, Input, Modal, ModalContent, ModalOverlay, Select, Stack, Text } from "@chakra-ui/react"
-import { useEffect } from "react";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addInfo, closeAddrModal, selectAddrModalFlag, selectInvoiceInfo } from "./invoiceSlice"
+import { closeShippingModal, selectShippingModalFlag } from "./invoiceSlice"
 
-export function OrderInfoModal(){
+export function ShippingModal(){
 
     const dispatch = useDispatch();
 
-    const isOpen = useSelector(selectAddrModalFlag);
-    const invoice = useSelector(selectInvoiceInfo);
-
-    const [name, setName] = useState(invoice.name);
-    const [phone, setPhone] = useState(invoice.phone);
-    const [province, setProvince] = useState(invoice.province);
-    const [district, setDistrict] = useState(invoice.district);
-    const [ward, setWard] = useState(invoice.ward);
-    const [addressDetail, setAddressDetail] = useState(invoice.addressDetail);
-    
-    // useEffect(()=>{
-    //     console.log("phone: " + phone);
-    // },[phone])
-
-    // useEffect(()=>{
-    //     console.log("ward: " + ward);
-    // },[ward])
-
-    function handleSubmit(){
-        const invoice = {
-            "name" : name,
-            "phone" : phone,
-            "province" : province,
-            "district" : district,
-            "ward" : ward,
-            "addressDetail" : addressDetail,
-        }
-        dispatch(addInfo(invoice))
-    }
+    const isOpen = useSelector(selectShippingModalFlag);
 
     return(
         <Modal isCentered
@@ -57,33 +27,21 @@ export function OrderInfoModal(){
                          borderRadius='0px 0px 14px 14px' p={4}
                         textColor='#595243' bg='#f9f9f7'
                     >
-                        <Input id='phone' value={phone}
-                                onChange={(e)=>setPhone(e.target.value)} 
-                                placeholder='Số điện thoại của bạn' />
-                        <Input id='name' value={name}
-                                onChange={(e)=>setName(e.target.value)} 
-                                placeholder='Họ và tên của bạn' />
-                        <Select id='province' value={province}
-                                onChange={(e)=>setProvince(e.target.value)} 
-                                placeholder='Select province'>
+                        <Input id='phone' placeholder='Số điện thoại của bạn' />
+                        <Input id='name' placeholder='Họ và tên của bạn' />
+                        <Select id='province' placeholder='Select province'>
                             <option>United Arab Emirates</option>
                             <option>Nigeria</option>
                         </Select>                    
-                        <Select id='district' value={district}
-                                onChange={(e)=>setDistrict(e.target.value)} 
-                                placeholder='Select district'>
+                        <Select id='district' placeholder='Select district'>
                             <option>United Arab Emirates</option>
                             <option>Nigeria</option>
                         </Select>                    
-                        <Select id='ward' value={ward}
-                                onChange={(e)=>setWard(e.target.value)} 
-                                placeholder='Select ward'>
+                        <Select id='ward' placeholder='Select ward'>
                             <option>United Arab Emirates</option>
                             <option>Nigeria</option>
                         </Select>
-                        <Input id='addressDetail' value={addressDetail}
-                                onChange={(e)=>setAddressDetail(e.target.value)} 
-                                placeholder='Số nhà, tên đường' />                
+                        <Input id='addressDetail' placeholder='Số nhà, tên đường' />                
                     </Stack>
                 </Box>
                 <Flex>
@@ -91,7 +49,7 @@ export function OrderInfoModal(){
                     p={2} h={12} bg='#5f5438' w='100%' 
                     textColor='#f5f4ed' fontWeight='bold'
                     textAlign='center' className="browButton"
-                    onClick={()=>dispatch(closeAddrModal())}
+                    onClick={()=>dispatch(closeShippingModal())}
                 >
                     <Text fontSize='xl'><ArrowBackIcon/>&nbsp;chọn lại món</Text>
                 </Button>
@@ -99,7 +57,7 @@ export function OrderInfoModal(){
                         p={2} h={12} bg='#df5854' w='100%'
                          textColor='#f5f4ed' fontWeight='bold'
                         textAlign='center' className="redButton"
-                        onClick={()=>handleSubmit()}
+                        onClick={()=>dispatch(closeShippingModal())}
                 >
                     <Text fontSize='xl'>Tiếp tục&nbsp;<ArrowForwardIcon/></Text>
                 </Button>

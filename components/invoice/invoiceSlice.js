@@ -6,24 +6,21 @@ export const invoiceSlice = createSlice({
     addrModalFlag: false,
     shippingModalFlag: false,
     confirmModalFlag: false,
-    value: [],
+    value: {
+      "name" : "",
+      "phone" : "",
+      "province" : "",
+      "district" : "",
+      "ward" : "",
+      "addressDetail" : "",
+    },
   },
   reducers: {
-    // addToCart: (state, action) => {
-
-    //   let flag = true
-    //   state.value.map((item, key) => {
-    //     //check for newCartItem or not
-    //     if(item.idProduct == action.payload.idProduct){
-    //       flag = false
-    //       state.value[key].quantity = Number(item.quantity)+Number(action.payload.quantity)
-    //     }
-    //   });
-    //   if(flag){ 
-    //     return { value : state.value.concat(action.payload) }
-    //   }
-
-    // },
+    addInfo: (state, action) => {
+        console.log("payload:"+action.payload);
+        return { value : action.payload,
+                confirmModalFlag: true }
+    },
     openAddrModal: (state) => {state.addrModalFlag = true},
     closeAddrModal: (state) => {state.addrModalFlag = false},
     openShippingModal: (state) => {state.shippingModalFlag = true},
@@ -39,7 +36,8 @@ export const { openAddrModal,
               openShippingModal,
               closeShippingModal,
               openConfirmModal,
-              closeConfirmModal } = invoiceSlice.actions
+              closeConfirmModal,
+              addInfo } = invoiceSlice.actions
 export const selectInvoiceInfo = state => state.invoice.value;
 export const selectAddrModalFlag = state => state.invoice.addrModalFlag;
 export const selectShippingModalFlag = state => state.invoice.shippingModalFlag;

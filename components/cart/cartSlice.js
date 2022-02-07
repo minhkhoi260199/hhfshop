@@ -13,7 +13,7 @@ export const cartSlice = createSlice({
         //check for newCartItem or not
         if(item.idProduct == action.payload.idProduct){
           flag = false
-          state.value[key].quantity = Number(item.quantity)+Number(action.payload.quantity)
+          // state.value[key].quantity = Number(item.quantity)+Number(action.payload.quantity)
         }
       });
       // console.log("New state:"+JSON.stringify(state.value));
@@ -33,14 +33,18 @@ export const cartSlice = createSlice({
     increment: (state, action) => {
       state.value.forEach((item, index) => {
         if(item.idProduct == action.payload){
-          state.value[index].quantity++
+          if(state.value[index].quantity < 10){
+            state.value[index].quantity++
+          }
         }
       })
     },
     decrement: (state, action) => {
       state.value.forEach((item, index) => {
         if(item.idProduct == action.payload){
-          state.value[index].quantity--
+          if(state.value[index].quantity > 1){
+            state.value[index].quantity--
+          }
         }
       })
     }

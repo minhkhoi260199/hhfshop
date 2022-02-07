@@ -6,6 +6,7 @@ import Item from "../components/item/Item";
 import Cart from "../components/cart/Cart";
 import CartMobileBar from "../components/cart/CartMobileBar";
 import { OrderInfoModal } from "../components/invoice/OrderInfoModal";
+import { ConfirmModal } from "../components/invoice/ConfirmModal";
 
 const products = [
   {
@@ -68,6 +69,7 @@ export default function Home() {
         <CartMobileBar />
       </Grid>
       <OrderInfoModal />
+      <ConfirmModal />
     </>
   );
 }

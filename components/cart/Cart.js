@@ -17,6 +17,10 @@ function Cart(){
 
     const dispatch = useDispatch();
 
+    function handleSubmit(){
+        dispatch(openAddrModal())
+    }
+
     return(
         <>
             <Box mb={1} border='1px #d7d7d7 solid' borderRadius='14'>
@@ -44,7 +48,7 @@ function Cart(){
                     p={2} h={12} bg='#5f5438' 
                     textColor='#f5f4ed' fontWeight='bold'
                     textAlign='center' w='100%' className="browButton"
-                    onClick={()=>dispatch(openAddrModal())}
+                    onClick={()=>handleSubmit()}
             >
                 <Text fontSize='xl'>Đặt hàng</Text>
             </Button>
