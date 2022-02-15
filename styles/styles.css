@@ -19,3 +19,41 @@
 .browButton:hover {
     color :  #5f5438;
 }
+
+/*Bounce button*/
+@keyframes kreep {
+    0% {-webkit-transform: scale(1.1,.9);
+        transform: scale(1.1,.9);}
+   50% { -webkit-transform: scale(.9,1.1) translateY(-.5rem)}
+   70% { -webkit-transform: scale(1);
+         transform: scale(1);}
+}
+
+.kreep {
+  display: inline-block;
+  /*name-duration-function(ease,eas-in,linear)-delay-count-direction */
+  animation: kreep 1s ease 2s infinite alternate;
+}
+/*Bounce arrow*/
+
+.arrow {
+  text-align: center;
+  /* margin: 8% 0; */
+}
+.bounce {
+  -moz-animation: bounce 1s infinite;
+  -webkit-animation: bounce 1s infinite;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}

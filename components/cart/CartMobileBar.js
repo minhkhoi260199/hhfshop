@@ -16,7 +16,7 @@ function CartMobileBar(){
     },0)
 
     return(
-        <Box display={{base: 'block', md:'none'}}>
+        <Box display={{base: 'block', md:'none'}} zIndex={2}>
             <Flex p={3} position="fixed" bottom={0} left={0}
                     bg='#a6e9ca' w='100%'
                     borderRadius='14px 14px 0px 0px'

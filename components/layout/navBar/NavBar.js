@@ -17,7 +17,7 @@ import {HamburgerIcon} from "@chakra-ui/icons";
 
 const tabs = [
     {
-        "name" : "Danh mục",
+        "name" : "Cửa hàng",
         "path" : "/"
     },{
         "name" : "Bài viết",
@@ -26,7 +26,7 @@ const tabs = [
         "name" : "Giới thiệu",
         "path" : "/info/comingSoon"
     },{
-        "name" : "Liên hệ",
+        "name" : "Cộng tác",
         "path" : "/info/comingSoon"
     }
 ]

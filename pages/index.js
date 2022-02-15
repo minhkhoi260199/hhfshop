@@ -39,6 +39,7 @@ const products = [
 ];
 
 export default function Home() {
+  
   return (
     <>
       <Head>
@@ -46,7 +47,7 @@ export default function Home() {
         <meta name="description" content="Nông sản sạch đến tay người dùng" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Grid templateColumns="repeat(3, 1fr)" gap={4} pb={12}>
+      <Grid templateColumns="repeat(3, 1fr)" gap={4}>
         <GridItem colSpan={{ base: "3", md: "2" }}>
           <Box
             display={{ base: "block", md: "none" }}
