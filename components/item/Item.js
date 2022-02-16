@@ -11,13 +11,13 @@ import {
     Text,
     useNumberInput
 } from "@chakra-ui/react";
-import {ArrowRightIcon} from "@chakra-ui/icons";
 
 import { useDispatch } from "react-redux";
 import { addToCart } from "../cart/cartSlice"
 
 import {numberWithCommas} from "../helper/numberWithCommas"
 import { memo } from "react";
+import { FaAngleDoubleRight } from "react-icons/fa";
 
 function Item(props){
     const { product } = props
@@ -120,7 +120,7 @@ function Item(props){
                                     <Button bg='#f9f9f7' textColor='#5d5745'
                                             mt='2px' w='150px' size='sm'
                                             onClick={handleSubmit}
-                                    ><ArrowRightIcon/>&nbsp; Mua Ngay</Button>
+                                    ><FaAngleDoubleRight/>&nbsp; Mua Ngay</Button>
                                 </Box>
                             </Flex>
                         </Box>
@@ -131,7 +131,7 @@ function Item(props){
                         <Button bg='#f9f9f7' textColor='#5d5745'
                                 w='110px' size='sm'
                                 onClick={handleSubmit}
-                        ><ArrowRightIcon/>&nbsp; Mua Ngay</Button>
+                        ><FaAngleDoubleRight/>&nbsp; Mua Ngay</Button>
                     </Box>
                 </GridItem>
             </Grid>

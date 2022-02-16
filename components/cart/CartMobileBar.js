@@ -1,9 +1,9 @@
 import {Box, Button, Center, Flex, Grid, GridItem, Modal, ModalContent, ModalOverlay, Text, useDisclosure} from "@chakra-ui/react";
-import {EditIcon} from "@chakra-ui/icons";
 import Cart from "./Cart";
 import { useSelector } from "react-redux";
 import { selectCart } from "./cartSlice";
 import {numberWithCommas} from "../helper/numberWithCommas"
+import { FaCartPlus } from "react-icons/fa";
 
 function CartMobileBar(){
 
@@ -31,7 +31,7 @@ function CartMobileBar(){
                             <Button bg='#ed645f' textColor='#f9f9f7'
                                     size='md' margin='auto'
                                     onClick={onOpen} className="redButton"
-                            ><EditIcon/>&nbsp; Giỏ hàng</Button>
+                            ><FaCartPlus/>&nbsp; Giỏ hàng</Button>
                         </Center>
                     </GridItem>
                 </Grid>

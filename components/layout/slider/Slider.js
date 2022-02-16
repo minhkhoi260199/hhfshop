@@ -1,7 +1,7 @@
-import { ChevronDownIcon } from '@chakra-ui/icons';
 import { Box, Button, Image, Text } from '@chakra-ui/react';
 import Carousel from 'nuka-carousel';
 import { useRef } from 'react';
+import { FaAngleDoubleDown } from 'react-icons/fa';
 
 const images = [
     {
@@ -45,13 +45,11 @@ function Slider(){
                         <Text fontSize='xl' fontWeight='bold' textAlign='center'>XEM CỬA HÀNG</Text>
                     </Box>
                 </Button>
-                <Box position='absolute' right='160px' bottom='25px'
-                        className="arrow bounce">
-                    <ChevronDownIcon w='5em' h='5em' color="cyan.100"/>
-                </Box>
-                <Box position='absolute' right='160px' bottom='0'
-                        className="arrow bounce">
-                    <ChevronDownIcon w='5em' h='5em' color="cyan.100"/>
+                <Box position='absolute' right='160px' bottom='30px'
+                        className="arrow bounce"
+                        color="cyan.100" fontSize='4.5em'
+                >
+                    <FaAngleDoubleDown/>
                 </Box>
             </Box>
             <Box ref={myRef}></Box>

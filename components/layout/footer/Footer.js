@@ -1,11 +1,12 @@
-import { EmailIcon, LinkIcon, PhoneIcon, StarIcon } from "@chakra-ui/icons";
 import {
     Box,
     Flex,
+    Link,
     SimpleGrid,
     Spacer,
     Text,
 } from "@chakra-ui/react";
+import { FaEnvelope, FaLink, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 
 const tabs = [
     {
@@ -41,9 +42,10 @@ function Footer(){
                     </Box>
                     <Box height='80px'>
                         <Text fontSize='xl' pb={2} fontWeight='bold'>Thông tin liên hệ</Text>
-                        <Flex><PhoneIcon/><Text fontSize='sm'>&nbsp;&nbsp;(+84) 585 700 679</Text></Flex>
-                        <Flex><EmailIcon/><Text fontSize='sm'>&nbsp;&nbsp;hiephoafarm@gmail.com</Text></Flex>
-                        <Flex><LinkIcon/><Text fontSize='sm'>&nbsp;&nbsp;https://www.instagram.com/hiephoafarm/</Text></Flex>
+                        <Flex><FaPhoneAlt/><Text fontSize='sm'>&nbsp;&nbsp;(+84) 585 700 679</Text></Flex>
+                        <Flex><FaEnvelope/><Text fontSize='sm'>&nbsp;&nbsp;hiephoafarm@gmail.com</Text></Flex>
+                        <Flex><FaLink/><Text fontSize='sm'>&nbsp;&nbsp;https://www.instagram.com/hiephoafarm/</Text></Flex>
+                        <Flex><FaMapMarkerAlt/><Text fontSize='sm'>&nbsp;&nbsp;Address</Text></Flex>
                     </Box>
                     <Box height='160px'>
                         <Text fontSize='xl' pb={2} fontWeight='bold'>Fanpage</Text>
@@ -60,7 +62,7 @@ function Footer(){
             <Flex margin='auto' p={2} maxW='1300px' fontStyle='italic' color='#847f72' fontSize='sm'>
                 <Spacer/>
                 <Text>
-                    {year} © Hiệp Hoà Farm store - Made by Khôi Nguyễn with 🖤
+                    {year} © Hiệp Hoà Farm store - Made by <Link href='https://www.linkedin.com/in/minhkhoi2601/' color='pink.300' isExternal >Khôi Nguyễn</Link> with 🖤
                 </Text>
                 <Spacer/>
             </Flex>

@@ -1,11 +1,11 @@
 import {Box, Button, Flex, Spacer, Text} from "@chakra-ui/react";
-import {EditIcon} from "@chakra-ui/icons";
 import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
 import { selectCart } from "./cartSlice";
 import {numberWithCommas} from "../helper/numberWithCommas"
 import { useDispatch } from "react-redux";
 import { openAddrModal } from "../invoice/invoiceSlice"
+import { FaCartArrowDown } from "react-icons/fa";
 
 function Cart(){
 
@@ -25,9 +25,10 @@ function Cart(){
         <>
             <Box mb={1} border='1px #d7d7d7 solid' borderRadius='14'>
                 <Flex borderRadius='14px 14px 0px 0px' borderBottom='1px #d7d7d7 solid'
-                      p={2} h={12}
+                      p={2} pl={4} h={12}
                       bg='#5f5438' textColor='#f5f4ed' >
-                    <Text paddingLeft={3} fontWeight='bold' fontSize='xl'><EditIcon/>&nbsp;Đơn hàng</Text>
+                    <Text p={1} fontWeight='bold' fontSize='2xl'><FaCartArrowDown/></Text>
+                    <Text pl={1} fontWeight='bold' fontSize='xl'>Đơn hàng</Text>
                     &nbsp;
                     <Text fontSize='md'>({cart.length} món)</Text>
                 </Flex>

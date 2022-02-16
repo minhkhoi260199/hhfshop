@@ -9,12 +9,12 @@ import {
     Square,
     Text, Tooltip,
 } from "@chakra-ui/react";
-import {SmallCloseIcon} from "@chakra-ui/icons";
 import {increment, decrement, removeCartItem} from "../cart/cartSlice"
 import { useDispatch } from "react-redux";
+import { memo } from "react";
+import { FaTimes } from "react-icons/fa";
 
 import {numberWithCommas} from "../helper/numberWithCommas"
-import { memo } from "react";
 
 function CartItem(props){
 
@@ -31,7 +31,7 @@ function CartItem(props){
             <Tooltip hasArrow label='Bỏ sản phẩm' bg='pink.400'>
                 <Box onClick={()=>dispatch(removeCartItem(item.idProduct))}
                     p='0' as='button' bottom='0' right='0' position='absolute'>
-                    <SmallCloseIcon fontSize='25px' color='red'/>
+                    <FaTimes fontSize='25px' color='red'/>
                 </Box>
             </Tooltip>
             <Grid templateColumns='repeat(14, 1fr)'>

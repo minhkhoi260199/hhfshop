@@ -1,6 +1,6 @@
 import {Button, Input, InputGroup, InputRightAddon, Tooltip} from "@chakra-ui/react";
-import {SearchIcon} from "@chakra-ui/icons";
 import {useState} from "react";
+import { FaSearch } from "react-icons/fa";
 
 export default function SearchBar(){
 
@@ -17,7 +17,7 @@ export default function SearchBar(){
                                  p={0} children={
                     <Button w='100%' borderRadius='0px 14px 14px 0px'
                             onClick={()=>setInput("Test Button")}
-                    ><SearchIcon />
+                    ><FaSearch />
                     </Button>
                 } />
             </Tooltip>

@@ -1,4 +1,5 @@
 import { Grid, GridItem } from "@chakra-ui/react";
+import ScrollButton from "../ScrollButton";
 import Footer from "./footer/Footer";
 import NavBar from "./navBar/NavBar";
 import Slider from "./slider/Slider";
@@ -30,6 +31,7 @@ export default function Layout({ children }) {
           {/*Side banner 2*/}
         </GridItem>
       </Grid>
+      <ScrollButton />
       <Footer />
     </>
   );

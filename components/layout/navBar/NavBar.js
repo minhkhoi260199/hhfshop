@@ -13,7 +13,7 @@ import {
     MenuItem,
     MenuList, Text
 } from "@chakra-ui/react";
-import {HamburgerIcon} from "@chakra-ui/icons";
+import { FaBars } from "react-icons/fa";
 
 const tabs = [
     {
@@ -54,7 +54,7 @@ function NavBar(){
                        <Grid templateColumns='repeat(4, 1fr)' gap={2}>
                            {tabs.map(tab => {
                                return(
-                                   <GridItem w='100%' margin='auto' key={tab.name}>
+                                   <GridItem w='100%' margin='auto' cursor='pointer' key={tab.name}>
                                        <Link href={tab.path}>
                                            <Center h='9' textAlign='center'
                                                    onClick={() => setState(tab.name)}
@@ -84,7 +84,7 @@ function NavBar(){
                                    <MenuButton
                                        as={IconButton}
                                        aria-label='Options'
-                                       icon={<HamburgerIcon />}
+                                       icon={<FaBars />}
                                        variant='outline'
                                    />
                                    <MenuList background="#a6e9ca" zIndex={2}>
