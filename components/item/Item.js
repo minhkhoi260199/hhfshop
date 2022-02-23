@@ -9,7 +9,8 @@ import {
     Spacer,
     Square,
     Text,
-    useNumberInput
+    useNumberInput,
+    useToast
 } from "@chakra-ui/react";
 
 import { useDispatch } from "react-redux";
@@ -22,6 +23,8 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 function Item(props){
     const { product } = props
     const dispatch = useDispatch()
+
+    const toast = useToast()
 
     const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
         useNumberInput({
@@ -45,6 +48,14 @@ function Item(props){
 
     const handleSubmit = () =>{
         dispatch(addToCart(cartItem));
+        toast({
+            title: `Đã thêm '`+cartItem.productName+`' vào giỏ`,
+            status: 'success',
+            position: 'bottom',
+            variant: 'left-accent',
+            duration: 2000,
+            isClosable: true,
+          })
     }
 
     return(

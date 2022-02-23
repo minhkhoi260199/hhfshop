@@ -8,22 +8,6 @@ import {
 } from "@chakra-ui/react";
 import { FaEnvelope, FaLink, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 
-const tabs = [
-    {
-        "name" : "Danh mục",
-        "path" : "/"
-    },{
-        "name" : "Bài viết",
-        "path" : "/info/comingSoon"
-    },{
-        "name" : "Giới thiệu",
-        "path" : "/info/comingSoon"
-    },{
-        "name" : "Liên hệ",
-        "path" : "/info/comingSoon"
-    }
-]
-
 function Footer(){
 
     const year = new Date().getFullYear();
@@ -34,20 +18,20 @@ function Footer(){
                 <SimpleGrid columns={{base:'1', md:'3'}} spacing={10}
                             width="100%" 
                 >
-                    <Box height='80px'>
+                    <Box height='80px' mt={2}>
                         <Text fontSize='xl' pb={2} fontWeight='bold'>Giới thiệu</Text>
                         <Text>
 
                         </Text>
                     </Box>
-                    <Box height='80px'>
+                    <Box height='80px' mt={2}>
                         <Text fontSize='xl' pb={2} fontWeight='bold'>Thông tin liên hệ</Text>
                         <Flex><FaPhoneAlt/><Text fontSize='sm'>&nbsp;&nbsp;(+84) 585 700 679</Text></Flex>
                         <Flex><FaEnvelope/><Text fontSize='sm'>&nbsp;&nbsp;hiephoafarm@gmail.com</Text></Flex>
                         <Flex><FaLink/><Text fontSize='sm'>&nbsp;&nbsp;https://www.instagram.com/hiephoafarm/</Text></Flex>
                         <Flex><FaMapMarkerAlt/><Text fontSize='sm'>&nbsp;&nbsp;Address</Text></Flex>
                     </Box>
-                    <Box height='160px'>
+                    <Box height='160px' mt={2}>
                         <Text fontSize='xl' pb={2} fontWeight='bold'>Fanpage</Text>
                         <Flex position='relative'>
                             <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhiephoafarm&tabs&small_header=false&adapt_container_width=true&hide_cover=false&width=340&height=130&show_facepile=true&appId=220058775445865" scrolling="no" frameBorder="0" allowFullScreen={true} allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
@@ -59,13 +43,16 @@ function Footer(){
                     </Box>
                 </SimpleGrid>
             </Flex>
-            <Flex margin='auto' p={2} maxW='1300px' fontStyle='italic' color='#847f72' fontSize='sm'>
-                <Spacer/>
-                <Text>
-                    {year} © Hiệp Hoà Farm store - Made by <Link href='https://www.linkedin.com/in/minhkhoi2601/' color='pink.300' isExternal >Khôi Nguyễn</Link> with 🖤
-                </Text>
-                <Spacer/>
-            </Flex>
+            <SimpleGrid columns={{base:'1', md:'2'}}
+                        margin='auto' p={2} maxW='1300px' 
+                        fontStyle='italic' color='#847f72' fontSize='sm' >
+                <Box textAlign={{base:'left', md:'right'}}>
+                    {year} © Hiệp Hoà Farm store &nbsp;
+                </Box>
+                <Box textAlign={{base:'right', md:'left'}}>
+                    - Made by <Link href='https://www.linkedin.com/in/minhkhoi2601/' color='pink.300' isExternal >Khôi Nguyễn</Link> with 🖤
+                </Box>
+            </SimpleGrid>
         </Box>
     );
 }

@@ -29,12 +29,18 @@ useEffect(()=>{
     window.addEventListener('scroll', toggleVisible);
     var btnToTop = document.getElementById('btnToTop');
     btnToTop.addEventListener('click', scrollToTop);
+
+    return () => {
+        window.removeEventListener('scroll', toggleVisible);
+        btnToTop.removeEventListener('click', scrollToTop);
+    }
 },[])
 
 return (
-	<Button position='fixed' zIndex={1} right='10px' bottom='15px'
-            width='59px' height='60px' fontSize='3.6rem' borderRadius='30px'
-            p={0} cursor='pointer' color='#ffc136'
+	<Button width={{ base: '39px', md: '59px' }}
+            height={{ base: '40px', md: '60px' }} 
+            fontSize={{ base: '2.5rem', md: '3.6rem' }}
+            p={0} borderRadius='30px' cursor='pointer' color='#ffc136'
             display={visible ? 'block' : 'none'} 
             id='btnToTop'
     >

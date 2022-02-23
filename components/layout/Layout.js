@@ -1,5 +1,7 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem } from "@chakra-ui/react";
+import MessengerButton from "../MessengerButton";
 import ScrollButton from "../ScrollButton";
+import ZaloButton from "../ZaloButton";
 import Footer from "./footer/Footer";
 import NavBar from "./navBar/NavBar";
 import Slider from "./slider/Slider";
@@ -8,6 +10,7 @@ export default function Layout({ children }) {
   return (
     <>
       <NavBar />
+      {/* {children.type.name==='Home' && <Slider />} */}
       <Slider />
       <Grid templateColumns="repeat(20, 1fr)" margin="auto" maxW="1450px">
         <GridItem
@@ -31,7 +34,12 @@ export default function Layout({ children }) {
           {/*Side banner 2*/}
         </GridItem>
       </Grid>
-      <ScrollButton />
+      <Box position='fixed' zIndex={1} right='10px' bottom={{ base: "95px", md: "15px" }}
+      >
+        <ScrollButton />
+        {/* <ZaloButton /> <br/>
+        <MessengerButton /> */}
+      </Box>
       <Footer />
     </>
   );

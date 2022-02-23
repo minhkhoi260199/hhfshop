@@ -28,10 +28,10 @@ function CartItem(props){
              position='relative'
         >
             {/* {console.log("item id: "+ item.idProduct)} */}
-            <Tooltip hasArrow label='Bỏ sản phẩm' bg='pink.400'>
+            <Tooltip hasArrow label='Xoá' bg='pink.400' placement='top'>
                 <Box onClick={()=>dispatch(removeCartItem(item.idProduct))}
                     p='0' as='button' bottom='0' right='0' position='absolute'>
-                    <FaTimes fontSize='25px' color='red'/>
+                    <FaTimes fontSize='22px' color='red'/>
                 </Box>
             </Tooltip>
             <Grid templateColumns='repeat(14, 1fr)'>
