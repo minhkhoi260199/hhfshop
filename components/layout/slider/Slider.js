@@ -26,6 +26,8 @@ function Slider(){
                         <Image
                             // borderRadius='14'
                             // objectFit='cover'
+                            width='100%'
+                            height='auto'
                             key={img.name}
                             src={'./slide/'+img.name}
                             alt={img.name}

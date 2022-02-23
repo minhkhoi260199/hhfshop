@@ -68,7 +68,8 @@ function Item(props){
                         <Square flex='1'>
                             <Image
                                 borderRadius='14'
-                                // objectFit='cover'
+                                width='100%'
+                                height='auto'
                                 src={'./images/'+product.gallery}
                                 alt={product.gallery}
                             />
