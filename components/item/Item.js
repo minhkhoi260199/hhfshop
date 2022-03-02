@@ -21,6 +21,7 @@ import { memo } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import Carousel from "nuka-carousel";
 
+//Product Item
 function Item(props) {
   const { product } = props;
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ function Item(props) {
     productName: product.productName,
     productPrice: product.productPrice,
     saleUnit: product.saleUnit,
-    photo: product.galleriesByIdProduct[0].photo,
+    photo: (product.galleriesByIdProduct.length>0?product.galleriesByIdProduct[0].photo:''),
     quantity: input.value,
   };
 
@@ -84,7 +85,8 @@ function Item(props) {
                       borderRadius="14"
                       width="100%"
                       height="auto"
-                      src={"./images/" + img.photo}
+                    //   src={"./images/" + img.photo}
+                      src={"http://127.0.0.1:5000/static/uploads/images/" + img.photo}
                       alt={img.photo}
                     />
                   );

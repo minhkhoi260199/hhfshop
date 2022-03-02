@@ -42,7 +42,8 @@ function CartItem(props){
                                 borderRadius='14'
                                 p={1}
                                 objectFit='cover'
-                                src={'./images/'+item.photo}
+                                // src={'./images/'+item.photo}
+                                src={"http://127.0.0.1:5000/static/uploads/images/" + item.photo}
                                 alt={item.photo}
                             />
                         </Square>
