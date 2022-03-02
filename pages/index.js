@@ -16,7 +16,16 @@ const products = [
       "Bơ loại một không rẻ nhưng siêu ngon siêu chất lượng không bơ nào sánh bằng. Đảm bảo đáng đồng tiền bát gạo luôn !!",
     productPrice: "100000",
     saleUnit: "KG",
-    gallery: "bo.jpg",
+    galleriesByIdProduct: [
+      {
+          "idGallery": 51,
+          "photo": "bo.jpg"
+      },
+      {
+          "idGallery": 52,
+          "photo": "bo2.jpg"
+      }, 
+    ]
   },
   {
     idProduct: "2",
@@ -25,7 +34,16 @@ const products = [
       "Siêu ngon bổ rẻ, giác ả phải chăng siêu chất lượng được tuyển chọn từ miệt vườn",
     productPrice: "50000",
     saleUnit: "KG",
-    gallery: "bo2.jpg",
+    galleriesByIdProduct: [
+      {
+          "idGallery": 51,
+          "photo": "bo.jpg"
+      },
+      {
+          "idGallery": 52,
+          "photo": "bo2.jpg"
+      }, 
+    ]
   },
   {
     idProduct: "3",
@@ -34,7 +52,16 @@ const products = [
       "Bơ loại một không rẻ nhưng siêu ngon siêu chất lượng không bơ nào sánh bằng. Đảm bảo đáng đồng tiền bát gạo luôn !!",
     productPrice: "1000000",
     saleUnit: "KG",
-    gallery: "bo4.jpg",
+    galleriesByIdProduct: [
+      {
+          "idGallery": 51,
+          "photo": "bo.jpg"
+      },
+      {
+          "idGallery": 52,
+          "photo": "bo2.jpg"
+      }, 
+    ]
   },
 ];
 

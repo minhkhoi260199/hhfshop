@@ -42,8 +42,8 @@ function CartItem(props){
                                 borderRadius='14'
                                 p={1}
                                 objectFit='cover'
-                                src={'./images/'+item.gallery}
-                                alt={item.gallery}
+                                src={'./images/'+item.photo}
+                                alt={item.photo}
                             />
                         </Square>
                     </Flex>
