@@ -32,13 +32,15 @@ function Cart(){
                     &nbsp;
                     <Text fontSize='md'>({cart.length} món)</Text>
                 </Flex>
-                {cart.map(item=>{
-                    return(<CartItem key={item.idProduct} cartItem={item} />)
-                })}
+                <Box overflowY={'scroll'} maxH='500px' bg='white'>
+                    {cart.map(item=>{
+                        return(<CartItem key={item.idProduct} cartItem={item} />)
+                    })}
+                </Box>
                 <Flex borderRadius='0px 0px 14px 14px' p={4}
-                     textColor='#595243' bg='#f9f9f7'
+                     textColor='#595243' bg='#ffda7b'
                 >
-                    <Text fontSize='lg'>Tổng tiền:</Text>
+                    <Text fontSize='lg' color='black'>Tổng tiền:</Text>
                     <Spacer/>
                     <Text fontSize='lg' fontWeight='bold'
                           justifySelf='end'
