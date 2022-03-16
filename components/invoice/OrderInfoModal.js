@@ -2,13 +2,12 @@ import { Box, Button, Flex, Input, Modal, ModalContent, ModalOverlay, Select, St
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaEdit } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { addInfo, closeAddrModal, selectAddrModalFlag, selectInvoiceInfo } from "./invoiceSlice"
+import { addInfo, closeAddrModal, selectInvoiceInfo } from "./invoiceSlice"
 
 export function OrderInfoModal(){
 
     const dispatch = useDispatch();
 
-    const isOpen = useSelector(selectAddrModalFlag);
     const invoice = useSelector(selectInvoiceInfo);
 
     const [name, setName] = useState(invoice.name);
@@ -18,14 +17,6 @@ export function OrderInfoModal(){
     const [ward, setWard] = useState(invoice.ward);
     const [addressDetail, setAddressDetail] = useState(invoice.addressDetail);
     
-    // useEffect(()=>{
-    //     console.log("phone: " + phone);
-    // },[phone])
-
-    // useEffect(()=>{
-    //     console.log("ward: " + ward);
-    // },[ward])
-
     function handleSubmit(){
         const invoice = {
             "name" : name,
@@ -40,7 +31,7 @@ export function OrderInfoModal(){
 
     return(
         <Modal isCentered
-                isOpen={isOpen}
+                isOpen={true}
                 motionPreset='slideInBottom'
         >
             <ModalOverlay />
@@ -67,18 +58,21 @@ export function OrderInfoModal(){
                                 placeholder='Select province'>
                             <option>United Arab Emirates</option>
                             <option>Nigeria</option>
+                            <option>Hồ Chí Minh</option>
                         </Select>                    
                         <Select id='district' value={district}
                                 onChange={(e)=>setDistrict(e.target.value)} 
                                 placeholder='Select district'>
                             <option>United Arab Emirates</option>
                             <option>Nigeria</option>
+                            <option>Quận 10</option>
                         </Select>                    
                         <Select id='ward' value={ward}
                                 onChange={(e)=>setWard(e.target.value)} 
                                 placeholder='Select ward'>
                             <option>United Arab Emirates</option>
                             <option>Nigeria</option>
+                            <option>phường 12</option>
                         </Select>
                         <Input id='addressDetail' value={addressDetail}
                                 onChange={(e)=>setAddressDetail(e.target.value)} 

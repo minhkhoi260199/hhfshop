@@ -9,15 +9,15 @@ export const invoiceSlice = createSlice({
     value: {
       "name" : "",
       "phone" : "",
-      "province" : "",
-      "district" : "",
-      "ward" : "",
-      "addressDetail" : "",
+      "province" : "Hồ Chí Minh",
+      "district" : "Quận 10",
+      "ward" : "phường 12",
+      "addressDetail" : "135 Thành Thái",
     },
   },
   reducers: {
     addInfo: (state, action) => {
-        console.log("payload:"+action.payload);
+        console.log("payload:"+JSON.stringify(action.payload));
         return { value : action.payload,
                 confirmModalFlag: true }
     },

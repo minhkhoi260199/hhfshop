@@ -14,6 +14,7 @@ export const cartSlice = createSlice({
         if(item.idProduct == action.payload.idProduct){
           flag = false
           // state.value[key].quantity = Number(item.quantity)+Number(action.payload.quantity)
+          state.value[key].quantity = Number(action.payload.quantity)
         }
       });
       // console.log("New state:"+JSON.stringify(state.value));

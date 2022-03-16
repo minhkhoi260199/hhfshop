@@ -1,78 +1,28 @@
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import Head from 'next/head'
 
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import SearchBar from "../components/SearchBar";
 import Item from "../components/item/Item";
 import Cart from "../components/cart/Cart";
 import CartMobileBar from "../components/cart/CartMobileBar";
 import { OrderInfoModal } from "../components/invoice/OrderInfoModal";
 import { ConfirmModal } from "../components/invoice/ConfirmModal";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import { addAllProduct, selectAllProduct } from "./productSlice";
 import ProductApi from "./api/productApi";
 
-// const products = [
-//   {
-//     idProduct: "1",
-//     productName: "Bơ sáp",
-//     description:
-//       "Bơ loại một không rẻ nhưng siêu ngon siêu chất lượng không bơ nào sánh bằng. Đảm bảo đáng đồng tiền bát gạo luôn !!",
-//     productPrice: "100000",
-//     saleUnit: "KG",
-//     galleriesByIdProduct: [
-//       {
-//           "idGallery": 51,
-//           "photo": "bo.jpg"
-//       },
-//       {
-//           "idGallery": 52,
-//           "photo": "bo2.jpg"
-//       }, 
-//     ]
-//   },
-//   {
-//     idProduct: "2",
-//     productName: "Bơ bình dân",
-//     description:
-//       "Siêu ngon bổ rẻ, giác ả phải chăng siêu chất lượng được tuyển chọn từ miệt vườn",
-//     productPrice: "50000",
-//     saleUnit: "KG",
-//     galleriesByIdProduct: [
-//       {
-//           "idGallery": 51,
-//           "photo": "bo.jpg"
-//       },
-//       {
-//           "idGallery": 52,
-//           "photo": "bo2.jpg"
-//       }, 
-//     ]
-//   },
-//   {
-//     idProduct: "3",
-//     productName: "Bơ 1",
-//     description:
-//       "Bơ loại một không rẻ nhưng siêu ngon siêu chất lượng không bơ nào sánh bằng. Đảm bảo đáng đồng tiền bát gạo luôn !!",
-//     productPrice: "1000000",
-//     saleUnit: "KG",
-//     galleriesByIdProduct: [
-//       {
-//           "idGallery": 51,
-//           "photo": "bo.jpg"
-//       },
-//       {
-//           "idGallery": 52,
-//           "photo": "bo2.jpg"
-//       }, 
-//     ]
-//   },
-// ];
+import { selectAddrModalFlag, selectConfirmModalFlag } from "../components/invoice/invoiceSlice"
 
 export default function Home() {
   
   const dispatch = useDispatch();
   const products = useSelector(selectAllProduct);
+
+  const isOpenConfirmModal = useSelector(selectConfirmModalFlag);
+  const isOpenAddrModal = useSelector(selectAddrModalFlag);
 
   useEffect(()=>{
     const fetchProductList = async () => {
@@ -81,18 +31,14 @@ export default function Home() {
         dispatch(addAllProduct(response));
         console.log("API success !!!");
         // console.log("data"+ JSON.stringify(response));
+        // console.log("data"+ response);
       } catch (error) {
         console.log("Product API Fail !!");
         console.log(error);
       }
     }
     fetchProductList();
-      // axios.get('http://127.0.0.1:5000/api/product/getItems')
-      // .then((response)=>{
-      //     console.log("API success !!!");
-      //     console.log("data"+ JSON.stringify(response));
-      // })
-  },[])
+  }, [])
 
   return (
     <>
@@ -123,8 +69,8 @@ export default function Home() {
         </GridItem>
         <CartMobileBar />
       </Grid>
-      <OrderInfoModal />
-      <ConfirmModal />
+      {isOpenAddrModal && <OrderInfoModal /> }
+      {isOpenConfirmModal && <ConfirmModal />}
     </>
   );
 }

@@ -3,18 +3,17 @@ import { FaCheck, FaCheckDouble, FaRegTimesCircle, FaMapMarkerAlt, FaUserAlt, Fa
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from "../cart/cartSlice";
-import { closeConfirmModal, selectConfirmModalFlag, selectInvoiceInfo } from "./invoiceSlice"
+import { closeConfirmModal, selectInvoiceInfo } from "./invoiceSlice"
 
 import InvoiceItem from "./InvoiceItem";
 import {numberWithCommas} from "../helper/numberWithCommas"
+import InvoiceApi from "../../pages/api/invoiceApi";
 
 export function ConfirmModal(){
 
     const dispatch = useDispatch();
 
-    const isOpen = useSelector(selectConfirmModalFlag);
     const invoice = useSelector(selectInvoiceInfo);
-    
     const cart = useSelector(selectCart);
 
     const amouth = cart.reduce((total, item)=>{
@@ -25,9 +24,37 @@ export function ConfirmModal(){
 
     const totalPayment = amouth + shipfee
 
+
+    const sendInvoice = async (data) => {
+        console.log(data);
+        try {
+            // Check if phonenumber have a processing order
+            // const checkInvoiceProcessing = 
+
+            const response = await InvoiceApi.saveInvoice(data)
+            // console.log(response);
+            dispatch(closeConfirmModal())
+
+        } catch (error) {
+            console.log(errol);
+        }
+    }
+
+    const handleSubmit = () => {
+        const data = {
+            "customerPhone" : invoice.phone,
+            "customerName" : invoice.name,
+            "address" : invoice.addressDetail+', '+invoice.ward+', '+invoice.district+', '+invoice.province,
+            "shippingFee" : shipfee,
+            "orderAmount" : totalPayment,
+            "cart" : cart,
+        }
+        sendInvoice(data)
+    }
+
     return(
         <Modal isCentered
-                isOpen={isOpen}
+                isOpen='true'
                 motionPreset='slideInBottom'
         >
             <ModalOverlay />
@@ -52,7 +79,7 @@ export function ConfirmModal(){
                                 </Text>
                             </Flex>
                             <Flex>
-                                <FaMapMarkerAlt color="blue" size={'22px'}/> &nbsp; 
+                                <FaMapMarkerAlt color="blue" /> &nbsp; 
                                 <Text ml={1}>
                                     {invoice.addressDetail}, {invoice.ward}, {invoice.district}, {invoice.province}
                                 </Text>
@@ -111,7 +138,7 @@ export function ConfirmModal(){
                         p={2} h={12} bg='#a6e9ca' w='100%'
                          textColor='green' fontWeight='bold'
                         textAlign='center' className="redButton"
-                        onClick={()=>dispatch(closeConfirmModal())}
+                        onClick={()=>handleSubmit()}
                 >
                     <Text fontSize='xl'>Đặt hàng</Text>&nbsp;<FaCheck/>
                 </Button>

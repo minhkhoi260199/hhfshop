@@ -11,7 +11,7 @@ export function ShippingModal(){
 
     return(
         <Modal isCentered
-                isOpen={isOpen}
+                isOpen={true}
                 motionPreset='slideInBottom'
         >
             <ModalOverlay />
