@@ -20,6 +20,7 @@ import { numberWithCommas } from "../helper/numberWithCommas";
 import { memo } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import Carousel from "nuka-carousel";
+import { BASEURL } from "../helper/config";
 
 //Product Item
 function Item(props) {
@@ -86,7 +87,7 @@ function Item(props) {
                       width="100%"
                       height="auto"
                     //   src={"./images/" + img.photo}
-                      src={"http://127.0.0.1:5000/static/uploads/images/" + img.photo}
+                      src={ BASEURL + "/static/uploads/images/" + img.photo}
                       alt={img.photo}
                     />
                   );

@@ -1,8 +1,10 @@
 import axios from "axios";
 import queryString from "query-string"
+import { BASEURL } from "../../components/helper/config";
 
 const axiosClient = axios.create({
-    baseURL: "http://127.0.0.1:5000/api",
+    // baseURL: "http://127.0.0.1:5000/api",
+    baseURL: BASEURL+"/api",
     headers:{
         'content-type' : 'application/json',
     },

@@ -10,6 +10,7 @@ import {
 
 import {numberWithCommas} from "../helper/numberWithCommas"
 import { Spacer } from "@chakra-ui/react";
+import { BASEURL } from "../helper/config";
 
 function InvoiceItem(props){
 
@@ -29,7 +30,7 @@ function InvoiceItem(props){
                                 // p={1}
                                 objectFit='cover'
                                 // src={'./images/'+item.photo}
-                                src={"http://127.0.0.1:5000/static/uploads/images/" + item.photo}
+                                src={BASEURL+"/static/uploads/images/" + item.photo}
                                 alt={item.photo}
                             />
                         </Square>
