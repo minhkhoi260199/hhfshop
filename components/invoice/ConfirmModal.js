@@ -8,6 +8,7 @@ import { closeConfirmModal, selectInvoiceInfo } from "./invoiceSlice"
 import InvoiceItem from "./InvoiceItem";
 import {numberWithCommas} from "../helper/numberWithCommas"
 import InvoiceApi from "../../pages/api/invoiceApi";
+import { useToast } from "@chakra-ui/react";
 
 export function ConfirmModal(){
 
@@ -24,6 +25,7 @@ export function ConfirmModal(){
 
     const totalPayment = amouth + shipfee
 
+    const toast = useToast()
 
     const sendInvoice = async (data) => {
         console.log(data);
@@ -34,8 +36,24 @@ export function ConfirmModal(){
             const response = await InvoiceApi.saveInvoice(data)
             // console.log(response);
             dispatch(closeConfirmModal())
-
+            toast({
+                title: `ĐẶT HÀNG THÀNH CÔNG`,
+                description: "Đơn hàng của bạn đã được tạo, chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất. Cảm ơn !",
+                status: "success",
+                position: "bottom",
+                variant: "left-accent",
+                duration: 5000,
+                isClosable: true,
+              });          
         } catch (error) {
+            toast({
+                title: `CÓ LỖI XẢY RA`,
+                status: "danger",
+                position: "bottom",
+                variant: "left-accent",
+                duration: 3000,
+                isClosable: true,
+              });          
             console.log(errol);
         }
     }

@@ -34,7 +34,7 @@ function CartItem(props){
                     <FaTimes fontSize='22px' color='red'/>
                 </Box>
             </Tooltip>
-            <Grid templateColumns='repeat(14, 1fr)'>
+            <Grid templateColumns='repeat(16, 1fr)'>
                 <GridItem colSpan='3'>
                     <Flex>
                         <Square flex='1'>
@@ -49,8 +49,8 @@ function CartItem(props){
                         </Square>
                     </Flex>
                 </GridItem>
-                <GridItem pl={3} pr={2} colSpan='7'>
-                    <Text fontSize='lg' fontWeight='bold'>{item.productName}</Text>
+                <GridItem pl={3} pr={2} colSpan='8'>
+                    <Text fontSize='md' fontWeight='bold'>{item.productName}</Text>
                     <Flex m={1} maxW='100px' bg='#ffda7b'
                           borderRadius='8'>
                         <Button onClick={()=>dispatch(decrement(item.idProduct))}
@@ -65,7 +65,7 @@ function CartItem(props){
                         >+</Button>
                     </Flex>
                 </GridItem>
-                <GridItem colSpan='4' >
+                <GridItem colSpan='5' >
                     <Text fontSize={{base: 'sm', md:'xs', lg:'sm'}}>{numberWithCommas(item.productPrice)}đ</Text>
                     <Text fontSize={{base: 'sm', md:'xs', lg:'sm'}}>x&nbsp;{item.quantity}&nbsp;{item.saleUnit}</Text>
                     <Text fontSize={{base: 'sm', md:'xs', lg:'sm'}}
