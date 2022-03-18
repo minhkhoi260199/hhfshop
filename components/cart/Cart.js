@@ -32,7 +32,7 @@ function Cart(){
                     &nbsp;
                     <Text fontSize='md'>({cart.length} món)</Text>
                 </Flex>
-                <Box overflowY={'scroll'} maxH='500px' bg='white'>
+                <Box overflowY={'scroll'} maxH='450px' bg='white'>
                     {cart.map(item=>{
                         return(<CartItem key={item.idProduct} cartItem={item} />)
                     })}

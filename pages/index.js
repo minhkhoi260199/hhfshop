@@ -16,6 +16,7 @@ import ProductApi from "./api/productApi";
 
 import { selectAddrModalFlag, selectConfirmModalFlag } from "../components/invoice/invoiceSlice"
 import LoadingScreen from "../components/layout/loadingScreen";
+import Notify from "../components/ads/Notify";
 
 export default function Home() {
   
@@ -72,6 +73,7 @@ export default function Home() {
           <Box position="sticky" top={4}>
             <SearchBar />
             <Cart />
+            <Notify />
           </Box>
         </GridItem>
         <CartMobileBar />
