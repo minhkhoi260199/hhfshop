@@ -11,7 +11,7 @@ import CartMobileBar from "../components/cart/CartMobileBar";
 import { OrderInfoModal } from "../components/invoice/OrderInfoModal";
 import { ConfirmModal } from "../components/invoice/ConfirmModal";
 
-import { addAllProduct, selectAllProduct } from "./productSlice";
+import { addAllProduct, selectAllProduct } from "../components/item/productSlice";
 import ProductApi from "./api/productApi";
 
 import { selectAddrModalFlag, selectConfirmModalFlag } from "../components/invoice/invoiceSlice"
