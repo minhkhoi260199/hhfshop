@@ -9,8 +9,12 @@ import InvoiceItem from "./InvoiceItem";
 import {numberWithCommas} from "../helper/numberWithCommas"
 import InvoiceApi from "../../pages/api/invoiceApi";
 import { useToast } from "@chakra-ui/react";
+import { useState } from "react";
+import { Spinner } from "@chakra-ui/react";
 
 export function ConfirmModal(){
+
+    const [isSending, setIsSending] = useState(false)
 
     const dispatch = useDispatch();
 
@@ -59,6 +63,7 @@ export function ConfirmModal(){
     }
 
     const handleSubmit = () => {
+        setIsSending(true)
         const data = {
             "customerPhone" : invoice.phone,
             "customerName" : invoice.name,
@@ -149,6 +154,7 @@ export function ConfirmModal(){
                     textColor='#f5f4ed' fontWeight='bold'
                     textAlign='center' className="browButton"
                     onClick={()=>dispatch(closeConfirmModal())}
+                    disabled={isSending}
                 >
                     <Text fontSize='xl'>Huỷ</Text>&nbsp;<FaRegTimesCircle/>
                 </Button>
@@ -157,8 +163,9 @@ export function ConfirmModal(){
                          textColor='green' fontWeight='bold'
                         textAlign='center' className="redButton"
                         onClick={()=>handleSubmit()}
+                        disabled={isSending}
                 >
-                    <Text fontSize='xl'>Đặt hàng</Text>&nbsp;<FaCheck/>
+                    <Text fontSize='xl'>Đặt hàng</Text>&nbsp; { isSending ? <Spinner/> : <FaCheck/> }
                 </Button>
                 </Flex>
             </ModalContent>

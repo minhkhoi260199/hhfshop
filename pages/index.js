@@ -1,7 +1,7 @@
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import Head from 'next/head'
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import SearchBar from "../components/SearchBar";
@@ -15,9 +15,12 @@ import { addAllProduct, selectAllProduct } from "../components/item/productSlice
 import ProductApi from "./api/productApi";
 
 import { selectAddrModalFlag, selectConfirmModalFlag } from "../components/invoice/invoiceSlice"
+import LoadingScreen from "../components/layout/loadingScreen";
 
 export default function Home() {
   
+  const [isLoading, setIsLoading] = useState(true);
+
   const dispatch = useDispatch();
   const products = useSelector(selectAllProduct);
 
@@ -30,6 +33,7 @@ export default function Home() {
         const response = await ProductApi.getAll();
         dispatch(addAllProduct(response));
         console.log("API success !!!");
+        setIsLoading(false)
         // console.log("data"+ JSON.stringify(response));
         // console.log("data"+ response);
       } catch (error) {
@@ -57,9 +61,12 @@ export default function Home() {
           >
             <SearchBar />
           </Box>
-          {products.map((item) => {
-            return <Item key={item.idProduct} product={item} />;
-          })}
+          { isLoading && <LoadingScreen /> }
+          { 
+            products.map((item) => {
+              return <Item key={item.idProduct} product={item} />;
+            })
+          }
         </GridItem>
         <GridItem colSpan={1} display={{ base: "none", md: "block" }}>
           <Box position="sticky" top={4}>
