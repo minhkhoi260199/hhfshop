@@ -8,7 +8,7 @@ function LoadingScreen() {
     <>
       <Box fontWeight={"bold"} mb={2}>
         <Text size={'xxl'} textAlign="center" >FRUITS !!!...  ASSEMBLE !</Text> 
-        <Text size={'lg'} textAlign="center" >ANH EM TRÁI CÂY ĐANG TẬP HỢP <Spinner size='sm' color="pink" /> </Text>
+        <Text size={'lg'} textAlign="center" >Loading... <Spinner size='md' color="pink" /> </Text>
       </Box>
       <hr/>
       <Box textAlign={"center"}>
