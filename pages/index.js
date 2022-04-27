@@ -29,20 +29,24 @@ export default function Home() {
   const isOpenAddrModal = useSelector(selectAddrModalFlag);
 
   useEffect(()=>{
-    const fetchProductList = async () => {
-      try {
-        const response = await ProductApi.getAll();
-        dispatch(addAllProduct(response));
-        console.log("API success !!!");
-        setIsLoading(false)
-        // console.log("data"+ JSON.stringify(response));
-        // console.log("data"+ response);
-      } catch (error) {
-        console.log("Product API Fail !!");
-        console.log(error);
+    if(products.length == 0){
+      const fetchProductList = async () => {
+        try {
+          const response = await ProductApi.getAll();
+          dispatch(addAllProduct(response));
+          console.log("API success !!!");
+          setIsLoading(false)
+          // console.log("data"+ JSON.stringify(response));
+          // console.log("data"+ response);
+        } catch (error) {
+          console.log("Product API Fail !!");
+          console.log(error);
+        }
       }
+      fetchProductList();
+    } else {
+      setIsLoading(false)
     }
-    fetchProductList();
   }, [])
 
   return (
