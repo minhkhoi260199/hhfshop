@@ -134,8 +134,20 @@ function Item(props) {
           </Text>
           <Text
             paddingTop={0}
-            minH="125px"
+            minH="80px"
             fontSize={{ base: "xs", md: "sm", lg: "md" }}
+            overflowY={'scroll'} 
+            maxH={{ base: "110px", md: "100px", xl: "180px", '2xl': "200px" }}
+            sx={{
+              '&::-webkit-scrollbar': {
+                width: '5px',
+                borderRadius: '8px',
+                backgroundColor: `rgba(0, 0, 0, 0.02)`,
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: `rgba(0, 0, 0, 0.06)`,
+              },
+            }}
           >
             {product.description}
           </Text>
