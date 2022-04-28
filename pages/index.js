@@ -11,7 +11,7 @@ import CartMobileBar from "../components/cart/CartMobileBar";
 import { OrderInfoModal } from "../components/invoice/OrderInfoModal";
 import { ConfirmModal } from "../components/invoice/ConfirmModal";
 
-import { addAllProduct, selectAllProduct } from "../components/item/productSlice";
+import { addAllProduct, selectAllProduct, onLoading, offLoading, selectIsLoading } from "../components/item/productSlice";
 import ProductApi from "./api/productApi";
 
 import { selectAddrModalFlag, selectConfirmModalFlag } from "../components/invoice/invoiceSlice"
@@ -20,7 +20,8 @@ import Notify from "../components/ads/Notify";
 
 export default function Home() {
   
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
+  const isLoading = useSelector(selectIsLoading);
   const [width, setWidth] = useState('');
 
   const dispatch = useDispatch();
@@ -30,14 +31,13 @@ export default function Home() {
   const isOpenAddrModal = useSelector(selectAddrModalFlag);
 
   useEffect(()=>{
-    window.addEventListener("resize", () => setWidth(window.innerWidth));
     if(products.length == 0){
       const fetchProductList = async () => {
         try {
           const response = await ProductApi.getAll();
           dispatch(addAllProduct(response));
           console.log("API success !!!");
-          setIsLoading(false)
+          // dispatch(offLoading())
           // console.log("data"+ JSON.stringify(response));
           // console.log("data"+ response);
         } catch (error) {
@@ -47,10 +47,13 @@ export default function Home() {
       }
       fetchProductList();
     } else {
-      setIsLoading(false)
+      dispatch(offLoading())
     }
-    return () => window.removeEventListener("resize", handleWindowResize);
   }, [])
+  useEffect(()=>{
+    window.addEventListener("resize", () => setWidth(window.innerWidth));
+    return () => window.removeEventListener("resize", handleWindowResize);
+  },[])
 
   return (
     <>

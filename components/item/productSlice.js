@@ -4,20 +4,22 @@ export const productSlice = createSlice({
   name: 'product',
   initialState: {
     products: [],
-    searchResult: [],
+    isLoading: true,
   },
   reducers: {
     addAllProduct: (state, action) => {
-        return { products : state.products.concat(action.payload) }
+        return { products : state.products.concat(action.payload), isLoading : false }
     },
     addSearchedProduct: (state, action) => {
-        return { searchResult : action.payload }
+        return { products : action.payload, isLoading : false }
     },
+    onLoading: (state)=>{state.isLoading = true},
+    offLoading: (state)=>{state.isLoading = false}
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { addAllProduct } = productSlice.actions
+export const { addAllProduct, addSearchedProduct, onLoading, offLoading } = productSlice.actions
 export const selectAllProduct = state => state.product.products;
-export const selectSearchProduct = state => state.product.searchResult;
+export const selectIsLoading = state => state.product.isLoading;
 export default productSlice.reducer
