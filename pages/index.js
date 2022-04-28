@@ -21,6 +21,7 @@ import Notify from "../components/ads/Notify";
 export default function Home() {
   
   const [isLoading, setIsLoading] = useState(true);
+  const [width, setWidth] = useState('');
 
   const dispatch = useDispatch();
   const products = useSelector(selectAllProduct);
@@ -29,6 +30,7 @@ export default function Home() {
   const isOpenAddrModal = useSelector(selectAddrModalFlag);
 
   useEffect(()=>{
+    window.addEventListener("resize", () => setWidth(window.innerWidth));
     if(products.length == 0){
       const fetchProductList = async () => {
         try {
@@ -47,6 +49,7 @@ export default function Home() {
     } else {
       setIsLoading(false)
     }
+    return () => window.removeEventListener("resize", handleWindowResize);
   }, [])
 
   return (
@@ -64,7 +67,7 @@ export default function Home() {
             position="sticky"
             zIndex={1}
           >
-            <SearchBar />
+          {width < 768 && <SearchBar />}  
           </Box>
           { isLoading && <LoadingScreen /> }
           { 
@@ -75,7 +78,7 @@ export default function Home() {
         </GridItem>
         <GridItem colSpan={1} display={{ base: "none", md: "block" }}>
           <Box position="sticky" top={4}>
-            <SearchBar />
+            {width > 768 && <SearchBar />}
             <Cart />
             <Notify />
           </Box>
