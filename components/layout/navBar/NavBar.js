@@ -44,7 +44,8 @@ function NavBar(){
                            margin='auto'
                            boxSize='70px'
                            objectFit='cover'
-                           src='../logo.jpg'
+                        //    src='../logo.jpg'
+                           src='../LogoHHF.png'
                            alt='Hiệp Hoà Farm'
                        />
                    </Box>

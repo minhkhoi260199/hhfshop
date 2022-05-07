@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import productApi from "../pages/api/productApi";
 import {addSearchedProduct, onLoading} from "../components/item/productSlice"
 
-export default function SearchBar(){
+export default function CategoryBar(){
 
     const [keyword, setKeyword] = useState('')
 
@@ -37,9 +37,7 @@ export default function SearchBar(){
     }, [])
 
     return(
-        <InputGroup marginBottom={4} 
-                    zIndex={1}
-        >
+        <InputGroup marginBottom={4} >
             <Input borderRadius='14px 0px 0px 14px' bg="#f9f9f7"
                    id="keywordInput"
                    value={keyword} onChange={e=>setKeyword(e.target.value)} placeholder='Tên sản phẩm...' />

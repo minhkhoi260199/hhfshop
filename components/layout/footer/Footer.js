@@ -3,7 +3,7 @@ import {
     Flex,
     Link,
     SimpleGrid,
-    Spacer,
+    Image,
     Text,
 } from "@chakra-ui/react";
 import { FaEnvelope, FaLink, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
@@ -15,21 +15,35 @@ function Footer(){
     return(
         <Box bg='#ffde46' w='100%' pb={{base:'74px', md:'0'}} color='black'>
             <Flex margin='auto' maxW='1250px' p={5} >
+                {/* <SimpleGrid columns={{base:'1', md:'2'}} spacing={80}
+                            width="100%" 
+                > */}
                 <SimpleGrid columns={{base:'1', md:'3'}} spacing={10}
                             width="100%" 
                 >
-                    <Box height='80px' mt={2}>
-                        <Text fontSize='xl' pb={2} fontWeight='bold'>Giới thiệu</Text>
-                        <Text>
-
-                        </Text>
-                    </Box>
-                    <Box height='80px' mt={2}>
+                    <Box height='110px' mt={2}>
                         <Text fontSize='xl' pb={2} fontWeight='bold'>Thông tin liên hệ</Text>
-                        <Flex><FaPhoneAlt/><Text fontSize='sm'>&nbsp;&nbsp;(+84) 585 700 679</Text></Flex>
+                        {/* <Flex><FaPhoneAlt/><Text fontSize='sm'>&nbsp;&nbsp;(+84) 585 700 679</Text></Flex> */}
+                        <Flex><FaPhoneAlt/><Text fontSize='sm'>&nbsp;&nbsp;(+84) 0399 945 680</Text></Flex>
                         <Flex><FaEnvelope/><Text fontSize='sm'>&nbsp;&nbsp;hiephoafarm@gmail.com</Text></Flex>
                         <Flex><FaLink/><Text fontSize='sm'>&nbsp;&nbsp;https://www.instagram.com/hiephoafarm/</Text></Flex>
-                        <Flex><FaMapMarkerAlt/><Text fontSize='sm'>&nbsp;&nbsp;Address</Text></Flex>
+                        <Flex><FaMapMarkerAlt/><Text fontSize='sm'>&nbsp;&nbsp;A06 Đường TTN17 Khu 10HA, KP4, Tân Thới Nhất Q12</Text></Flex>
+                        <Flex><Link href='https://www.facebook.com/ceotonydofruit' fontSize='sm' color='green.300' isExternal >Dẫn đường đến shop</Link></Flex>
+                    </Box>
+                    <Box height='200px' mt={2}>
+                        <Text fontSize='xl' pb={2} fontWeight='bold'>Giới thiệu</Text>
+                        <Flex ml={10}>
+                            <Image
+                            p='0.5'
+                            width="75%"
+                            height="auto"
+                            objectFit='cover'
+                            src='../card.png'
+                            alt='Hiệp Hoà Farm'
+                            />
+                        </Flex>
+                        <Text>
+                        </Text>
                     </Box>
                     <Box height='160px' mt={2}>
                         <Text fontSize='xl' pb={2} fontWeight='bold'>Fanpage</Text>

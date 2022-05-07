@@ -19,7 +19,13 @@ import { addToCart } from "../cart/cartSlice";
 import { numberWithCommas } from "../helper/numberWithCommas";
 import { memo } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
-import Carousel from "nuka-carousel";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/autoplay"
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper";
+
 import { BASEURL } from "../helper/config";
 
 //Product Item
@@ -66,8 +72,8 @@ function Item(props) {
       <Grid templateColumns="repeat(10, 1fr)">
         <GridItem colSpan={{ base: "5", md: "4" }}>
           <Flex>
-            <Square flex="1">
-              <Carousel
+            <Square flex="1" overflow="auto" scale="auto" zIndex={0}>
+              {/* <Carousel
                 defaultControlsConfig={{
                   nextButtonText: ">",
                   prevButtonText: "<",
@@ -92,7 +98,29 @@ function Item(props) {
                     />
                   );
                 })}
-              </Carousel>
+              </Carousel> */}
+              <Swiper modules={[Pagination, Autoplay]}
+                      pagination={{clickable : true}}
+                      autoplay={{delay : 5000}} 
+              >
+                {product.galleriesByIdProduct.map((img) => {
+                  return (
+                    <SwiperSlide
+                      key={img.idGallery}
+                    >
+                      <Image
+                        borderRadius="14"
+                        width="100%"
+                        height="auto"
+                        objectFit='cover'
+                        //   src={"./images/" + img.photo}
+                        src={ BASEURL + "/static/uploads/images/" + img.photo}
+                        alt={img.photo}
+                        />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
             </Square>
           </Flex>
           <Box display={{ base: "block", md: "none" }} textAlign="center">
