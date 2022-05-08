@@ -59,7 +59,8 @@ export default function Home() {
     <>
       <Head>
         <title>Hiệp hoà farm</title>
-        <meta name="description" content="Nông sản sạch đến tay người dùng" />
+        <meta name="description" content="Mang nông sản sạch đến ngôi nhà của bạn" />
+        <link rel="shortcut icon" href="https://www.hiephoafarm.com/LogoHHF.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Grid templateColumns="repeat(3, 1fr)" gap={4}>
