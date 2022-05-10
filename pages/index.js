@@ -82,7 +82,7 @@ export default function Home() {
         </GridItem>
         <GridItem colSpan={1} display={{ base: "none", md: "block" }}>
           <Box position="sticky" top={4}>
-            {width > 768 && <SearchBar />}
+            {width >= 768 && <SearchBar />}
             <Cart />
             <Notify />
           </Box>

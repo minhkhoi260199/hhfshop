@@ -12,12 +12,12 @@ const images = [
   {
     name: "banner0.jpg",
   },
-  {
-    name: "banner1.jpg",
-  },
-  {
-    name: "banner2.jpg",
-  },
+  // {
+  //   name: "banner1.jpg",
+  // },
+  // {
+  //   name: "banner2.jpg",
+  // },
 ];
 
 function Slider() {
