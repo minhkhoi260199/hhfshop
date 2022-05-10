@@ -22,7 +22,7 @@ export default function Home() {
   
   // const [isLoading, setIsLoading] = useState(true);
   const isLoading = useSelector(selectIsLoading);
-  const [width, setWidth] = useState('');
+  const [width, setWidth] = useState(0);
 
   const dispatch = useDispatch();
   const products = useSelector(selectAllProduct);
@@ -32,6 +32,7 @@ export default function Home() {
 
   useEffect(()=>{
     if(products.length == 0){
+      setWidth(window.innerWidth);
       const fetchProductList = async () => {
         try {
           const response = await ProductApi.getAll();
@@ -52,7 +53,7 @@ export default function Home() {
   }, [])
   useEffect(()=>{
     window.addEventListener("resize", () => setWidth(window.innerWidth));
-    return () => window.removeEventListener("resize", handleWindowResize);
+    return () => window.removeEventListener("resize", () => setWidth(window.innerWidth));
   },[])
 
   return (

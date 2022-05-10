@@ -6,7 +6,7 @@ import {
     Image,
     Text,
 } from "@chakra-ui/react";
-import { FaEnvelope, FaLink, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import { FaEnvelope, FaLink, FaMapMarkerAlt, FaMapMarkedAlt, FaPhoneAlt } from "react-icons/fa";
 
 function Footer(){
 
@@ -28,7 +28,7 @@ function Footer(){
                         <Flex><FaEnvelope/><Text fontSize='sm'>&nbsp;&nbsp;hiephoafarm@gmail.com</Text></Flex>
                         <Flex><FaLink/><Text fontSize='sm'>&nbsp;&nbsp;https://www.instagram.com/hiephoafarm/</Text></Flex>
                         <Flex><FaMapMarkerAlt/><Text fontSize='sm'>&nbsp;&nbsp;A06 Đường TTN17 Khu 10HA, KP4, Tân Thới Nhất Q12</Text></Flex>
-                        <Flex><Link href='https://www.facebook.com/ceotonydofruit' fontSize='sm' color='green.300' isExternal >Dẫn đường đến shop</Link></Flex>
+                        <Flex><FaMapMarkedAlt/>&nbsp;&nbsp;&nbsp;<Link href='https://goo.gl/maps/hGDZDwNuSmWMqPW88' fontSize='sm' color='red.700' isExternal >Dẫn đường đến shop</Link></Flex>
                     </Box>
                     <Box height='200px' mt={2}>
                         <Text fontSize='xl' pb={2} fontWeight='bold'>Giới thiệu</Text>
