@@ -11,7 +11,7 @@ import CartMobileBar from "../components/cart/CartMobileBar";
 import { OrderInfoModal } from "../components/invoice/OrderInfoModal";
 import { ConfirmModal } from "../components/invoice/ConfirmModal";
 
-import { addAllProduct, selectAllProduct, onLoading, offLoading, selectIsLoading } from "../components/item/productSlice";
+import { addAllProduct, selectAllProduct, selectIsLoadingProduct } from "../components/item/productSlice";
 import ProductApi from "./api/productApi";
 
 import { selectAddrModalFlag, selectConfirmModalFlag } from "../components/invoice/invoiceSlice"
@@ -21,7 +21,7 @@ import Notify from "../components/ads/Notify";
 export default function Home() {
   
   // const [isLoading, setIsLoading] = useState(true);
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoadingProduct);
   const [width, setWidth] = useState(0);
 
   const dispatch = useDispatch();
@@ -30,25 +30,43 @@ export default function Home() {
   const isOpenConfirmModal = useSelector(selectConfirmModalFlag);
   const isOpenAddrModal = useSelector(selectAddrModalFlag);
 
+  // useEffect(()=>{
+  //   // if(products.length == 0){
+  //     setWidth(window.innerWidth);
+  //     const fetchCategoryList = async () => {
+  //       try {
+  //         const cates = await ProductApi.getCategories();
+  //         dispatch(addAllCategory(cates));
+  //         console.log("API success !!!");
+  //         // dispatch(offLoading())
+  //         // console.log("data"+ JSON.stringify(response));
+  //         console.log("category :"+ JSON.stringify(cates));
+  //       } catch (error) {
+  //         console.log("Product API Fail !!");
+  //         console.log(error);
+  //       }
+  //     }
+  //     fetchCategoryList();
+  //   // } else {
+  //     // dispatch(offLoading())
+  //   // }
+  // }, [])
   useEffect(()=>{
     if(products.length == 0){
       setWidth(window.innerWidth);
       const fetchProductList = async () => {
         try {
-          const response = await ProductApi.getAll();
-          dispatch(addAllProduct(response));
+          const products = await ProductApi.getAll();
+          dispatch(addAllProduct(products));
           console.log("API success !!!");
           // dispatch(offLoading())
-          // console.log("data"+ JSON.stringify(response));
-          // console.log("data"+ response);
+          // console.log("data"+ JSON.stringify(products));
         } catch (error) {
           console.log("Product API Fail !!");
           console.log(error);
         }
       }
       fetchProductList();
-    } else {
-      dispatch(offLoading())
     }
   }, [])
   useEffect(()=>{

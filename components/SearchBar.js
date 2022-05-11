@@ -1,11 +1,13 @@
 import {Button, Input, InputGroup, InputRightAddon, Tooltip} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 import { FaSearch } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import productApi from "../pages/api/productApi";
-import {addSearchedProduct, onLoading} from "../components/item/productSlice"
+import {addSearchedProduct, onLoadingProduct, selectIsLoadingProduct} from "../components/item/productSlice"
 
 export default function SearchBar(){
+
+    const isLoading = useSelector(selectIsLoadingProduct);
 
     const [keyword, setKeyword] = useState('')
 
@@ -17,7 +19,7 @@ export default function SearchBar(){
             if(keywordInput == ""){
                 console.log("No keyword. Search canceled !");
             } else {
-                dispatch(onLoading());
+                dispatch(onLoadingProduct());
                 try {
                     const response = await productApi.search(keywordInput);
                     // console.log("data"+ JSON.stringify(response));
@@ -49,6 +51,7 @@ export default function SearchBar(){
                     <Button w='100%' borderRadius='0px 14px 14px 0px'
                             onClick={()=>setKeyword(keyword)}
                             id="submitSearch"
+                            disabled={isLoading}
                     ><FaSearch />
                     </Button>
                 } />
