@@ -26,13 +26,13 @@ function MyApp({ Component, pageProps }) {
   // }, []);
 
   return (
-      <ChakraProvider theme={theme}>
-        <Provider store={store}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </Provider>
-      </ChakraProvider>
+    <ChakraProvider theme={theme}>
+      <Provider store={store}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
+    </ChakraProvider>
   )
 }
 

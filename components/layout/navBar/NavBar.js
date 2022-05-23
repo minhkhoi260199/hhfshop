@@ -33,7 +33,7 @@ const tabs = [
 
 function NavBar(){
 
-    const [state, setState] = useState("");
+    const [state, setState] = useState("Cửa hàng");
 
     return(
         <Box bg='#ffde46' w='100%' color='#5f5338' fontWeight='bold'>

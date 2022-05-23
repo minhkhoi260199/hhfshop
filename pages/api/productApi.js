@@ -9,6 +9,10 @@ class ProductApi {
         const url = "/product/search?keyword="+keyword;
         return axiosClient.get(url);
     };
+    getByCategory = (cateId) => {
+        const url = "/product/getItemsByCate?id="+cateId;
+        return axiosClient.get(url);
+    }
     getCategories = () => {
         const url = "/category/getAll";
         return axiosClient.get(url);

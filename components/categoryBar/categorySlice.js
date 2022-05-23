@@ -1,26 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const productSlice = createSlice({
-  name: 'product',
+export const categorySlice = createSlice({
+  name: 'category',
   initialState: {
     categories: [],
-    products: [],
     isLoading: true,
   },
   reducers: {
-    addAllProduct: (state, action) => {
-        return { products : state.products.concat(action.payload), isLoading : false }
+    addAllCategory: (state, action) => {
+        return { categories : action.payload, isLoading : false }
     },
-    addSearchedProduct: (state, action) => {
-        return { products : action.payload, isLoading : false }
-    },
-    onLoadingProduct: (state)=>{state.isLoading = true},
+    onLoadingCategory: (state)=>{state.isLoading = true},
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { addAllProduct, addAllCategory, addSearchedProduct, onLoadingProduct } = productSlice.actions
-export const selectAllProduct = state => state.product.products;
-export const selectAllCategory = state => state.product.products;
-export const selectIsLoadingProduct = state => state.product.isLoading;
-export default productSlice.reducer
+export const { addAllCategory, onLoadingCategory } = categorySlice.actions
+export const selectAllCategory = state => state.category.categories;
+export const selectIsLoadingCate = state => state.category.isLoading;
+export default categorySlice.reducer

@@ -12,6 +12,27 @@
     color :  white;
     background : #696d23
 }
+/* Category */
+.cateItem{
+    border-radius : 14px;
+    background : #f9f9f7;
+    cursor: pointer;
+    vertical-align: center;
+    text-align: center;
+    transition: background-color 0.5s, color 0.4s
+}
+.cateItem:hover {
+    color :  white;
+    background-color: #f88e8e
+}
+.cateActive{
+    border-radius: 14px;
+    cursor: pointer;
+    vertical-align: center;
+    text-align: center;
+    color :  white;
+    background : #f66464
+}
 /* button hover */
 .redButton:hover {
     color :  #de4333;

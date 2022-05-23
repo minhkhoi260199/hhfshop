@@ -1,5 +1,4 @@
 import { Box, Grid, GridItem } from "@chakra-ui/react";
-import Head from 'next/head'
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,14 +16,15 @@ import ProductApi from "./api/productApi";
 import { selectAddrModalFlag, selectConfirmModalFlag } from "../components/invoice/invoiceSlice"
 import LoadingScreen from "../components/layout/loadingScreen";
 import Notify from "../components/ads/Notify";
+import CategoryBar from "../components/categoryBar/CategoryBar";
 
 export default function Home() {
   
   // const [isLoading, setIsLoading] = useState(true);
-  const isLoading = useSelector(selectIsLoadingProduct);
   const [width, setWidth] = useState(0);
-
+  
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoadingProduct);
   const products = useSelector(selectAllProduct);
 
   const isOpenConfirmModal = useSelector(selectConfirmModalFlag);
@@ -37,7 +37,7 @@ export default function Home() {
   //       try {
   //         const cates = await ProductApi.getCategories();
   //         dispatch(addAllCategory(cates));
-  //         console.log("API success !!!");
+  //         console.log("Category API success !!!");
   //         // dispatch(offLoading())
   //         // console.log("data"+ JSON.stringify(response));
   //         console.log("category :"+ JSON.stringify(cates));
@@ -58,7 +58,7 @@ export default function Home() {
         try {
           const products = await ProductApi.getAll();
           dispatch(addAllProduct(products));
-          console.log("API success !!!");
+          console.log("Product API success !!!");
           // dispatch(offLoading())
           // console.log("data"+ JSON.stringify(products));
         } catch (error) {
@@ -76,21 +76,14 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>Hiệp hoà farm</title>
-        <meta name="description" content="Mang nông sản sạch đến ngôi nhà của bạn" />
-        <link rel="shortcut icon" href="https://www.hiephoafarm.com/LogoHHF.png" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Grid templateColumns="repeat(3, 1fr)" gap={4}>
         <GridItem colSpan={{ base: "3", md: "2" }}>
+          <CategoryBar />
           <Box
             display={{ base: "block", md: "none" }}
-            top={0}
-            position="sticky"
-            zIndex={1}
+            position="sticky" zIndex={1} top={1}
           >
-          {width < 768 && <SearchBar />}  
+            {width < 768 && <SearchBar />}  
           </Box>
           { isLoading && <LoadingScreen /> }
           { 
