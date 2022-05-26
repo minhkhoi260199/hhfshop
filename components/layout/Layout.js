@@ -17,10 +17,10 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar/>
-      {/* {console.log(children.type.name)} */}
+      {console.log("dataChild:<"+children.type.name+">")}
       {/* lên production lỗi */}
-      {children.type.name==='le' && <Slider />}
-      {/* <Slider /> */}
+      {/* {children.type.name==='le' && <Slider />} */}
+      <Slider />
       <Grid templateColumns="repeat(20, 1fr)" margin="auto" maxW="1450px">
         <GridItem
           display={{ base: "none", md: "none", lg: "block" }}
