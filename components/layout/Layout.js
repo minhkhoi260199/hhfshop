@@ -16,9 +16,10 @@ export default function Layout({ children }) {
         <link rel="shortcut icon" href="https://www.hiephoafarm.com/LogoHHF.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar />
-      {console.log(children.type.name)}
-      {children.type.name==='Home' && <Slider />} {/* lên production lỗi */}
+      <NavBar/>
+      {/* {console.log(children.type.name)} */}
+      {/* lên production lỗi */}
+      {children.type.name==='le' && <Slider />}
       {/* <Slider /> */}
       <Grid templateColumns="repeat(20, 1fr)" margin="auto" maxW="1450px">
         <GridItem

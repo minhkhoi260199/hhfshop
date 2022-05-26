@@ -10,8 +10,13 @@
 .navActive{
     border-radius: 22px;
     color :  white;
-    background : #696d23
+    background : #f66464
 }
+/* .navActive{
+    border-radius: 22px;
+    color :  white;
+    background : #696d23
+} */
 /* Category */
 .cateItem{
     border-radius : 14px;

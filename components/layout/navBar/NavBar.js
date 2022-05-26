@@ -33,7 +33,7 @@ const tabs = [
 
 function NavBar(){
 
-    const [state, setState] = useState("Cửa hàng");
+    const [stateNav, setStateNav] = useState("Cửa hàng");
 
     return(
         <Box bg='#ffde46' w='100%' color='#5f5338' fontWeight='bold'>
@@ -58,8 +58,8 @@ function NavBar(){
                                    <GridItem w='100%' margin='auto' cursor='pointer' key={tab.name}>
                                        <Link href={tab.path}>
                                            <Center h='9' textAlign='center'
-                                                   onClick={() => setState(tab.name)}
-                                                   className={state===tab.name?('navActive'):('navItem')}
+                                                   onClick={() => setStateNav(tab.name)}
+                                                   className={stateNav===tab.name?('navActive'):('navItem')}
                                            >
                                                {tab.name}
                                            </Center>
@@ -87,13 +87,16 @@ function NavBar(){
                                        aria-label='Options'
                                        icon={<FaBars />}
                                        variant='outline'
-                                   />
+                                       />
                                    <MenuList background="#a6e9ca" zIndex={2}>
                                        {tabs.map(tab => {
                                            return(
-                                            <Link href={tab.path} key={tab.name}>
-                                            <MenuItem >{tab.name}</MenuItem>
-                                               </Link>
+                                               <Link href={tab.path} key={tab.name}>
+                                                <MenuItem 
+                                                    onClick={() => {setStateNav(tab.name)}}
+                                                    className={stateNav===tab.name?('navActive'):('navItem')}
+                                                >{tab.name}</MenuItem>
+                                            </Link>
                                            )
                                        })}
                                    </MenuList>
