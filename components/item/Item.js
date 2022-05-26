@@ -73,32 +73,6 @@ function Item(props) {
         <GridItem colSpan={{ base: "5", md: "4" }}>
           <Flex>
             <Square flex="1" overflow="auto" scale="auto" zIndex={0}>
-              {/* <Carousel
-                defaultControlsConfig={{
-                  nextButtonText: ">",
-                  prevButtonText: "<",
-                  pagingDotsStyle: {
-                    fill: "white",
-                  },
-                }}
-                autoplay={true}
-                autoplayInterval={5000}
-                autoplayReverse={true}
-              >
-                {product.galleriesByIdProduct.map((img) => {
-                  return (
-                    <Image
-                      key={img.idGallery}
-                      borderRadius="14"
-                      width="100%"
-                      height="auto"
-                    //   src={"./images/" + img.photo}
-                      src={ BASEURL + "/static/uploads/images/" + img.photo}
-                      alt={img.photo}
-                    />
-                  );
-                })}
-              </Carousel> */}
               <Swiper modules={[Pagination, Autoplay]}
                       pagination={{clickable : true}}
                       autoplay={{delay : 5000}} 
@@ -160,7 +134,7 @@ function Item(props) {
           >
             {product.productName}
           </Text>
-          <Text
+          <Box
             paddingTop={0}
             minH="80px"
             fontSize={{ base: "xs", md: "sm", lg: "md" }}
@@ -176,9 +150,10 @@ function Item(props) {
                 backgroundColor: `rgba(0, 0, 0, 0.06)`,
               },
             }}
+            dangerouslySetInnerHTML={{__html: product.description}}
           >
-            {product.description}
-          </Text>
+            {/* {product.description} */}
+          </Box>
           <Box w="100%" position="absolute" bottom="0">
             <Box display={{ base: "none", md: "block" }}>
               <Flex>

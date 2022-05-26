@@ -16,7 +16,7 @@
 .cateItem{
     border-radius : 14px;
     background : #f9f9f7;
-    cursor: pointer;
+    /* cursor: pointer; */
     vertical-align: center;
     text-align: center;
     transition: background-color 0.5s, color 0.4s

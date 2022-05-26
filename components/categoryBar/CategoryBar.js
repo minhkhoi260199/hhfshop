@@ -1,52 +1,52 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { addAllCategory, selectAllCategory } from "./categorySlice";
+import { addAllCategory, onLoadingCategory, selectAllCategory, selectIsLoadingCate } from "./categorySlice";
+import { addSearchedProduct, onLoadingProduct, selectIsLoadingProduct} from "../item/productSlice";
 import ProductApi from "../../pages/api/productApi";
-import { Box } from "@chakra-ui/react";
-import { memo } from "react";
+import { Box, Spinner, Grid, GridItem, Text } from "@chakra-ui/react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
-import { Text } from "@chakra-ui/react";
 
-const categories = [
-  {
-    categoryName: "Bán chạy",
-    idCategory: 1
-  },
-  {
-    categoryName: "Sầu riêng",
-    idCategory: 2
-  },
-  {
-    categoryName: "Đặc sản",
-    idCategory: 3
-  },
-  {
-    categoryName: "Trái cây",
-    idCategory: 4
-  },
-  {
-    categoryName: "Sầu riêng",
-    idCategory: 5
-  },
-  {
-    categoryName: "Đặc sản",
-    idCategory: 6
-  }
-];
+// const categories = [
+//   {
+//     categoryName: "Bán chạy",
+//     idCategory: 1
+//   },
+//   {
+//     categoryName: "Sầu riêng",
+//     idCategory: 2
+//   },
+//   {
+//     categoryName: "Đặc sản",
+//     idCategory: 3
+//   },
+//   {
+//     categoryName: "Trái cây",
+//     idCategory: 4
+//   },
+//   {
+//     categoryName: "Sầu riêng",
+//     idCategory: 5
+//   },
+  // {
+  //   categoryName: "Đặc sản",
+  //   idCategory: 6
+  // }
+// ];
 
 // export default function CategoryBar() {
 function CategoryBar() {
 
-  const [currentCate, setCurrentCate] = useState("Bán chạy");
+  const [currentCate, setCurrentCate] = useState({categoryName: "Bán chạy", idCategory: 21});
 
   const dispatch = useDispatch();
-  // const categories = useSelector(selectAllCategory);
+  const categories = useSelector(selectAllCategory);
+  const isLoading = useSelector(selectIsLoadingProduct);
 
   useEffect(() => {
     if (categories.length == 0) {
@@ -66,6 +66,26 @@ function CategoryBar() {
     }
   }, []);
 
+  useEffect(()=>{
+    if(!isLoading){
+      const loadingProductByCate = async () =>{
+              dispatch(onLoadingProduct());
+              try {
+                  const response = await ProductApi.getByCategory(currentCate.idCategory);
+                  // console.log("data"+ JSON.stringify(response));
+                  dispatch(addSearchedProduct(response));
+                  console.log("Search API success !!!");
+                  // setIsLoading(false)
+                  // console.log("data"+ response);
+              } catch (error) {
+                  console.log("Search API Fail !!");
+                  console.log(error);
+              }
+      }
+      loadingProductByCate();
+    }
+  }, [currentCate])
+
   return (
     <>
     <Box borderRadius="14px" 
@@ -73,7 +93,23 @@ function CategoryBar() {
           background="#ffde46"
           // position="sticky" top={1} zIndex={1}
     >
-      <Swiper
+      {isLoading?(
+        <Grid templateColumns='repeat(4, 1fr)' gap={6}>
+          <GridItem className="cateItem">
+            <Spinner size='lg' color="pink" />
+          </GridItem>
+          <GridItem className="cateItem">
+            <Spinner size='lg' color="pink" />
+          </GridItem>
+          <GridItem className="cateItem">
+            <Spinner size='lg' color="pink" />
+          </GridItem>
+          <GridItem className="cateItem">
+            <Spinner size='lg' color="pink" />
+          </GridItem>
+        </Grid>
+      ):
+      (<Swiper
         modules={[FreeMode, Navigation]}
         freeMode={true}
         // navigation={true}
@@ -85,13 +121,9 @@ function CategoryBar() {
           return (
             <SwiperSlide key={item.idCategory}>
               <Box
-                // borderRadius="14px"
-                // background="#f9f9f7"
-                // cursor="pointer"
-                // verticalAlign="center"
-                // textAlign="center"
-                className={currentCate===item.categoryName?('cateActive'):('cateItem')}
-                onClick={() => setCurrentCate(item.categoryName)}
+                cursor={isLoading?("wait"):("pointer")}
+                className={currentCate.categoryName===item.categoryName?('cateActive'):('cateItem')}
+                onClick={() => setCurrentCate(item)}
                 >
                 <Text p={2} fontWeight="bold">
                   {item.categoryName}
@@ -101,6 +133,7 @@ function CategoryBar() {
           );
         })}
       </Swiper>
+      )}
     </Box>
     <Box
       p={3}
@@ -108,7 +141,7 @@ function CategoryBar() {
       textAlign="center"
       mb={2}
     >
-      <Text fontSize="3xl" fontWeight="bold" >Danh mục - {currentCate}</Text>
+      <Text fontSize="3xl" fontWeight="bold" >Danh mục - {currentCate.categoryName}</Text>
     </Box>
     </>
   );

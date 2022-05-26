@@ -7,9 +7,9 @@ import {addSearchedProduct, onLoadingProduct, selectIsLoadingProduct} from "../c
 
 export default function SearchBar(){
 
-    const isLoading = useSelector(selectIsLoadingProduct);
-
     const [keyword, setKeyword] = useState('')
+    
+    const isLoading = useSelector(selectIsLoadingProduct);
 
     const dispatch = useDispatch();
 

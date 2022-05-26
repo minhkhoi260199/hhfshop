@@ -10,7 +10,7 @@ class ProductApi {
         return axiosClient.get(url);
     };
     getByCategory = (cateId) => {
-        const url = "/product/getItemsByCate?id="+cateId;
+        const url = "/product/getItemsByCate?cateId="+cateId;
         return axiosClient.get(url);
     }
     getCategories = () => {
