@@ -14,6 +14,7 @@ import {
     MenuList, Text
 } from "@chakra-ui/react";
 import { FaBars } from "react-icons/fa";
+import Auth from "../../auth/Auth";
 
 const tabs = [
     {
@@ -49,7 +50,7 @@ function NavBar(){
                            alt='Hiệp Hoà Farm'
                        />
                    </Box>
-                   <Box w='80%' margin='auto'
+                   <Box w='60%' margin='auto'
                         display={{ base: 'none', md:'block'}}
                    >
                        <Grid templateColumns='repeat(4, 1fr)' gap={2}>
@@ -69,6 +70,11 @@ function NavBar(){
                            })}
                        </Grid>
                    </Box>
+                   <Box w='20%' margin='auto'
+                        display={{ base: 'none', md:'block'}}
+                    >
+                        <Auth/>
+                    </Box>
                    <Box w='80%' margin='auto'
                         display={{ base: 'block', md:'none'}}
                    >

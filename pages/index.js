@@ -17,6 +17,10 @@ import { selectAddrModalFlag, selectConfirmModalFlag } from "../components/invoi
 import LoadingScreen from "../components/layout/loadingScreen";
 import Notify from "../components/ads/Notify";
 import CategoryBar from "../components/categoryBar/CategoryBar";
+import { selectLoginModalFlag, selectRegisterModalFlag, selectUserInfoModalFlag } from "../components/auth/authSlice";
+import { RegisterModal } from "../components/auth/RegisterModal";
+import { LoginModal } from "../components/auth/LoginModal";
+import { UserInfoModal } from "../components/auth/userInfoModal";
 
 export default function Home() {
   
@@ -29,6 +33,10 @@ export default function Home() {
 
   const isOpenConfirmModal = useSelector(selectConfirmModalFlag);
   const isOpenAddrModal = useSelector(selectAddrModalFlag);
+
+  const isOpenRegisterModal = useSelector(selectRegisterModalFlag);
+  const isOpenLoginModal = useSelector(selectLoginModalFlag);
+  const isOpenUserInfoModal = useSelector(selectUserInfoModalFlag);
 
   // useEffect(()=>{
   //   // if(products.length == 0){
@@ -85,7 +93,7 @@ export default function Home() {
           >
             {width < 768 && <SearchBar />}  
           </Box>
-          { isLoading && <LoadingScreen /> }
+          { isLoading && <LoadingScreen cursor="wait"/> }
           { 
             products.map((item) => {
               return <Item key={item.idProduct} product={item} />;
@@ -103,6 +111,9 @@ export default function Home() {
       </Grid>
       {isOpenAddrModal && <OrderInfoModal /> }
       {isOpenConfirmModal && <ConfirmModal />}
+      {isOpenRegisterModal && <RegisterModal/>}
+      {isOpenLoginModal && <LoginModal/>}
+      {isOpenUserInfoModal && <UserInfoModal/>}
     </>
   );
 }

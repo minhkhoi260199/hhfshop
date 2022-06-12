@@ -52,7 +52,7 @@ export function ConfirmModal(){
         } catch (error) {
             toast({
                 title: `CÓ LỖI XẢY RA`,
-                status: "error",
+                status: "danger",
                 position: "bottom",
                 variant: "left-accent",
                 duration: 3000,
