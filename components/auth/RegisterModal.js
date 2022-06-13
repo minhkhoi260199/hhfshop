@@ -1,7 +1,7 @@
 import { InputRightElement } from "@chakra-ui/react";
 import { InputGroup } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
-import { Box, Button, Flex, Input, Modal, ModalContent, ModalOverlay, Select, Stack, Text } from "@chakra-ui/react"
+import { Box, Button, Flex, Input, Modal, ModalContent, ModalOverlay, Stack, Text } from "@chakra-ui/react"
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaEdit } from "react-icons/fa";
 import { useDispatch } from "react-redux";

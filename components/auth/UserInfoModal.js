@@ -1,31 +1,44 @@
-import { Box, Button, Flex, Input, Modal, ModalContent, ModalOverlay, Select, Stack, Text } from "@chakra-ui/react"
+import { InputRightElement } from "@chakra-ui/react";
+import { InputGroup } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Modal, ModalContent, ModalOverlay, Stack, Text } from "@chakra-ui/react"
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaEdit } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { closeUserInfoModal, selectUser } from "./authSlice";
 
 export function UserInfoModal(){
 
     const dispatch = useDispatch();
+    const toast = useToast()
 
-    const invoice = useSelector(selectInvoiceInfo);
+    const user = useSelector(selectUser);
 
-    const [name, setName] = useState(invoice.name);
-    const [phone, setPhone] = useState(invoice.phone);
-    const [province, setProvince] = useState(invoice.province);
-    const [district, setDistrict] = useState(invoice.district);
-    const [ward, setWard] = useState(invoice.ward);
-    const [addressDetail, setAddressDetail] = useState(invoice.addressDetail);
+    const [username, setUsername] = useState(user.username);
+    const [password, setPassword] = useState(user.password);
+    const [showPass, setShowPass] = useState(false)
+    const [fullname, setFullname] = useState(user.fullname);
+    const [address, setAddress] = useState(user.address);
     
     function handleSubmit(){
-        const invoice = {
-            "name" : name,
-            "phone" : phone,
-            "province" : province,
-            "district" : district,
-            "ward" : ward,
-            "addressDetail" : addressDetail,
+        let data = {
+            "username" : username,
+            "password" : password,
+            "roleId" : user.roleId,
+            "fullname" : fullname,
+            "address" : address,
+            "statusId" : user.statusId
         }
-        dispatch(addInfo(invoice))
+        console.log(data);
+        toast({
+            title: `CẬP NHẬT THÀNH CÔNG`,
+            description: "Gét goooo !",
+            status: "success",
+            position: "bottom",
+            variant: "left-accent",
+            duration: 5000,
+            isClosable: true,
+            });
     }
 
     return(
@@ -40,42 +53,36 @@ export function UserInfoModal(){
                         p={2} h={12} fontWeight='bold' fontSize='xl'
                         bg='#5f5438' textColor='#f5f4ed' >
                         <Text p={1} ><FaEdit/></Text>
-                        <Text paddingLeft={3} >Thông tin giao hàng</Text>
+                        <Text paddingLeft={3} >Thông tin tài khoản</Text>
                     </Flex>
                     <Stack spacing={3}
                          borderRadius='0px 0px 14px 14px' p={4}
                         textColor='#595243' bg='#f9f9f7'
                     >
-                        <Input id='phone' value={phone}
-                                onChange={(e)=>setPhone(e.target.value)} 
+                        <Input id='username' value={username}
+                                type='number'
+                                onChange={(e)=>setUsername(e.target.value)} 
                                 placeholder='Số điện thoại của bạn' />
-                        <Input id='name' value={name}
-                                onChange={(e)=>setName(e.target.value)} 
-                                placeholder='Họ và tên của bạn' />
-                        <Select id='province' value={province}
-                                onChange={(e)=>setProvince(e.target.value)} 
-                                placeholder='Select province'>
-                            <option>United Arab Emirates</option>
-                            <option>Nigeria</option>
-                            <option>Hồ Chí Minh</option>
-                        </Select>                    
-                        <Select id='district' value={district}
-                                onChange={(e)=>setDistrict(e.target.value)} 
-                                placeholder='Select district'>
-                            <option>United Arab Emirates</option>
-                            <option>Nigeria</option>
-                            <option>Quận 10</option>
-                        </Select>                    
-                        <Select id='ward' value={ward}
-                                onChange={(e)=>setWard(e.target.value)} 
-                                placeholder='Select ward'>
-                            <option>United Arab Emirates</option>
-                            <option>Nigeria</option>
-                            <option>phường 12</option>
-                        </Select>
-                        <Input id='addressDetail' value={addressDetail}
-                                onChange={(e)=>setAddressDetail(e.target.value)} 
-                                placeholder='Số nhà, tên đường' />                
+                        <InputGroup size='md'>
+                            <Input
+                                pr='4.5rem'
+                                type={showPass ? 'text' : 'password'}
+                                placeholder='Mật khẩu đăng nhập'
+                                id='password' value={password}
+                                onChange={(e)=>setPassword(e.target.value)} 
+                            />
+                            <InputRightElement width='4.5rem'>
+                                <Button h='1.75rem' size='sm' onClick={() => setShowPass(!showPass)}>
+                                {showPass ? 'Hide' : 'Show'}
+                                </Button>
+                            </InputRightElement>
+                        </InputGroup>
+                        <Input id='fullname' value={fullname}
+                                onChange={(e)=>setFullname(e.target.value)} 
+                                placeholder='Họ và tên' />
+                        <Input id='address' value={address}
+                                onChange={(e)=>setAddress(e.target.value)} 
+                                placeholder='Địa chỉ mặc định' />               
                     </Stack>
                 </Box>
                 <Flex>
@@ -83,9 +90,9 @@ export function UserInfoModal(){
                     p={2} h={12} bg='#5f5438' w='100%' 
                     textColor='#f5f4ed' fontWeight='bold'
                     textAlign='center' className="browButton"
-                    onClick={()=>dispatch(closeAddrModal())}
+                    onClick={()=>dispatch(closeUserInfoModal())}
                 >
-                    <FaArrowLeft/><Text fontSize='xl'>&nbsp;Chọn lại</Text>
+                    <FaArrowLeft/><Text fontSize='xl'>&nbsp;Hủy</Text>
                 </Button>
                 <Button borderRadius='14' border='1px #d7d7d7 solid'
                         p={2} h={12} bg='#df5854' w='100%'
@@ -93,7 +100,7 @@ export function UserInfoModal(){
                         textAlign='center' className="redButton"
                         onClick={()=>handleSubmit()}
                 >
-                    <Text fontSize='xl'>Tiếp tục</Text>&nbsp;<FaArrowRight/>
+                    <Text fontSize='xl'>Lưu thay đổi</Text>&nbsp;<FaArrowRight/>
                 </Button>
                 </Flex>
             </ModalContent>

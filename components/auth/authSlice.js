@@ -7,13 +7,14 @@ export const authSlice = createSlice({
     loginModal: false,
     registerModal: false,
     userInfoModal: false,
+    isLogin: false
   },
   reducers: {
     addLoginInfo: (state, action) => {
-      return { user: action.payload };
+      return { user: action.payload, isLogin: true };
     },
     userLogout: (state) => {
-      state.user = {};
+      return { user:{}, isLogin: false};
     },
     openLoginModal: (state) => {
       state.loginModal = true;
@@ -51,4 +52,5 @@ export const selectUser = (state) => state.auth.user;
 export const selectLoginModalFlag = (state) => state.auth.loginModal;
 export const selectRegisterModalFlag = (state) => state.auth.registerModal;
 export const selectUserInfoModalFlag = (state) => state.auth.userInfoModal;
+export const selectIsLogin = (state) => state.auth.isLogin;
 export default authSlice.reducer;

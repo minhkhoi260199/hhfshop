@@ -26,9 +26,9 @@ export function LoginModal(){
                     title: `ĐĂNG NHẬP THÀNH CÔNG`,
                     description: "Đi chợ thôi nào gét goooo !",
                     status: "success",
-                    position: "bottom",
+                    position: "top-right",
                     variant: "left-accent",
-                    duration: 5000,
+                    duration: 4000,
                     isClosable: true,
                     });
                 dispatch(addLoginInfo(response));

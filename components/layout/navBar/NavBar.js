@@ -15,6 +15,9 @@ import {
 } from "@chakra-ui/react";
 import { FaBars } from "react-icons/fa";
 import Auth from "../../auth/Auth";
+import Authed from "../../auth/authed";
+import { useSelector } from "react-redux";
+import { selectIsLogin } from "../../auth/authSlice";
 
 const tabs = [
     {
@@ -35,7 +38,7 @@ const tabs = [
 function NavBar(){
 
     const [stateNav, setStateNav] = useState("Cửa hàng");
-
+    const isLogin = useSelector(selectIsLogin);
     return(
         <Box bg='#ffde46' w='100%' color='#5f5338' fontWeight='bold'>
                <Flex margin='auto' maxW='1050px'>
@@ -73,7 +76,7 @@ function NavBar(){
                    <Box w='20%' margin='auto'
                         display={{ base: 'none', md:'block'}}
                     >
-                        <Auth/>
+                        {isLogin?<Authed/>:<Auth/>}
                     </Box>
                    <Box w='80%' margin='auto'
                         display={{ base: 'block', md:'none'}}

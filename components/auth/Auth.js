@@ -35,6 +35,7 @@ export default function Auth(){
             <Box borderRadius="0px 22px 22px 0px" p={2}
             bg="red" cursor='pointer'
             id="registerButton"
+            color="white"
             >                
                 Đăng ký
             </Box>
