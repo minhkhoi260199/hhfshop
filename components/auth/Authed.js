@@ -12,12 +12,35 @@ import { Image, Spacer, Flex } from "@chakra-ui/react";
 import { FaAngleDown } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { openUserInfoModal, selectUser, userLogout } from "./authSlice";
+import UserApi from "../../pages/api/userApi";
+import { addHistoryList, openHistoryModal } from "../histories/historySlice";
 
 export default function Authed() {
   
   const userInfo = useSelector(selectUser);
   const dispatch = useDispatch();
   const toast = useToast()
+
+  const loadHistory = async () =>{
+    try {
+        const response = await UserApi.getHistoryOrders(userInfo.username);
+        if(response != null){
+            dispatch(addHistoryList(response));
+            dispatch(openHistoryModal());
+        }
+    } catch (error) {
+        toast({
+            title: `Đã có lỗi xảy ra !!`,
+            status: "error",
+            position: "bottom",
+            variant: "left-accent",
+            duration: 5000,
+            isClosable: true,
+            });   
+        console.log("API Fail !!");
+        console.log(error);
+    }
+}
 
   const handleInfoMenu = () => {
     dispatch(openUserInfoModal())
@@ -35,7 +58,7 @@ export default function Authed() {
       });
   }
   const handleHistory = () => {
-    console.log("shopping history!");
+    loadHistory();
   }
 
   return (
@@ -88,7 +111,6 @@ export default function Authed() {
           <MenuItem onClick={() => handleLogout()}>Đăng xuất</MenuItem>
         </MenuList>
       </Menu>
-      {/* </Box> */}
     </Flex>
   );
 }

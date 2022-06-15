@@ -4,12 +4,15 @@ import { useSelector } from "react-redux";
 import { selectCart } from "./cartSlice";
 import {numberWithCommas} from "../helper/numberWithCommas"
 import { useDispatch } from "react-redux";
-import { openAddrModal } from "../invoice/invoiceSlice"
+import { addInfo, openAddrModal } from "../invoice/invoiceSlice"
 import { FaCartArrowDown } from "react-icons/fa";
+import { selectIsLogin, selectUser } from "../auth/authSlice";
 
 function Cart(){
 
     const cart = useSelector(selectCart)
+    const isLogin = useSelector(selectIsLogin)
+    const user = useSelector(selectUser)
 
     const amouth = cart.reduce((total, item)=>{
         return total += Number(item.productPrice)*Number(item.quantity)
@@ -18,7 +21,19 @@ function Cart(){
     const dispatch = useDispatch();
 
     function handleSubmit(){
-        dispatch(openAddrModal())
+        if(isLogin){
+            const info = {
+                "name" : user.fullname,
+                "phone" : user.username,
+                "province" : "",
+                "district" : "",
+                "ward" : "",
+                "addressDetail" : user.address,
+            }
+            dispatch(addInfo(info))
+        } else {
+            dispatch(openAddrModal())
+        }
     }
 
     return(

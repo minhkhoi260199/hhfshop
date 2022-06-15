@@ -33,7 +33,7 @@ export const authSlice = createSlice({
     },
     closeUserInfoModal: (state) => {
       state.userInfoModal = false;
-    },
+    }
   },
 });
 
@@ -46,7 +46,7 @@ export const {
   openUserInfoModal,
   closeLoginModal,
   closeRegisterModal,
-  closeUserInfoModal,
+  closeUserInfoModal
 } = authSlice.actions;
 export const selectUser = (state) => state.auth.user;
 export const selectLoginModalFlag = (state) => state.auth.loginModal;

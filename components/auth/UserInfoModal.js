@@ -6,6 +6,7 @@ import { useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaEdit } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { closeUserInfoModal, selectUser } from "./authSlice";
+import UserApi from "../../pages/api/userApi";
 
 export function UserInfoModal(){
 
@@ -20,25 +21,63 @@ export function UserInfoModal(){
     const [fullname, setFullname] = useState(user.fullname);
     const [address, setAddress] = useState(user.address);
     
-    function handleSubmit(){
-        let data = {
-            "username" : username,
-            "password" : password,
-            "roleId" : user.roleId,
-            "fullname" : fullname,
-            "address" : address,
-            "statusId" : user.statusId
+    const saveInfo = async (data) =>{
+        try {
+            const response = await UserApi.saveProfile(data);
+            // console.log("data"+ JSON.stringify(response));
+            if(response != null){
+                toast({
+                    title: `CẬP NHẬT THÀNH CÔNG`,
+                    description: "Gét goooo !",
+                    status: "success",
+                    position: "bottom",
+                    variant: "left-accent",
+                    duration: 5000,
+                    isClosable: true,
+                    });
+                // dispatch(closeRegisterModal());
+                dispatch(closeUserInfoModal());
+                console.log("Search API success !!!");
+            }
+            // setIsLoading(false)
+            // console.log("data"+ response);
+        } catch (error) {
+            toast({
+                title: `Thông tin không hợp lệ hoặc username đã được sử dụng bởi người khác`,
+                status: "error",
+                position: "bottom",
+                variant: "left-accent",
+                duration: 5000,
+                isClosable: true,
+                });   
+            console.log("Search API Fail !!");
+            console.log(error);
         }
-        console.log(data);
-        toast({
-            title: `CẬP NHẬT THÀNH CÔNG`,
-            description: "Gét goooo !",
-            status: "success",
-            position: "bottom",
-            variant: "left-accent",
-            duration: 5000,
-            isClosable: true,
-            });
+    }
+
+    const handleSubmit = () => {
+        if(username=="" || password=="" || fullname=="" || address==""){
+            toast({
+                title: `Thông tin không được trống`,
+                status: "error",
+                position: "bottom",
+                variant: "left-accent",
+                duration: 5000,
+                isClosable: true,
+                });          
+            console.log("Invalidate!");
+        } else {
+            let data = {
+                "idUser" : user.idUser,
+                "username" : username,
+                "password" : password,
+                "roleId" : user.roleId,
+                "fullname" : fullname,
+                "address" : address,
+                "statusId" : user.statusId
+            }
+            saveInfo(data);
+        }
     }
 
     return(
