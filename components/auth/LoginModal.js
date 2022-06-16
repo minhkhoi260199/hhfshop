@@ -1,7 +1,7 @@
 import { InputRightElement } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import { InputGroup } from "@chakra-ui/react";
-import { Box, Button, Flex, Input, Modal, ModalContent, ModalOverlay, Select, Stack, Text } from "@chakra-ui/react"
+import { Box, Button, Flex, Input, Modal, ModalContent, ModalOverlay, Stack, Text } from "@chakra-ui/react"
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaEdit } from "react-icons/fa";
 import { useDispatch } from "react-redux";
@@ -36,7 +36,7 @@ export function LoginModal(){
             }
         } catch (error) {
             toast({
-                title: `Sai username hoặc password !!`,
+                title: `Sai username, password hoặc tài khoảng bị vô hiệu !!`,
                 status: "error",
                 position: "bottom",
                 variant: "left-accent",
@@ -82,9 +82,9 @@ export function LoginModal(){
                          borderRadius='0px 0px 14px 14px' p={4}
                         textColor='#595243' bg='#f9f9f7'
                     >
-                        <Input id='phone' value={username}
+                        <Input id='phone' value={username} type='number'
                                 onChange={(e)=>setUsername(e.target.value)} 
-                                placeholder='Username' />
+                                placeholder='Số điện thoại của bạn' />
                         <InputGroup size='md'>
                             <Input
                                 pr='4.5rem'

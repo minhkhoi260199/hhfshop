@@ -96,6 +96,7 @@ export function RegisterModal(){
                          borderRadius='0px 0px 14px 14px' p={4}
                         textColor='#595243' bg='#f9f9f7'
                     >
+                        Số điện thoại đăng nhập:
                         <Input id='username' value={username}
                                 type='number'
                                 onChange={(e)=>setUsername(e.target.value)} 
@@ -114,12 +115,14 @@ export function RegisterModal(){
                                 </Button>
                             </InputRightElement>
                         </InputGroup>
+                        <Text>Họ và tên</Text>
                         <Input id='fullname' value={fullname}
                                 onChange={(e)=>setFullname(e.target.value)} 
-                                placeholder='Họ và tên' />
+                                placeholder='Nguyễn Văn A' />
+                                <Text>Địa chỉ giao hàng:</Text>
                         <Input id='address' value={address}
                                 onChange={(e)=>setAddress(e.target.value)} 
-                                placeholder='Địa chỉ mặc định' />
+                                placeholder='19 Hai Bà Trưng, Quận 1, Tp.HCM' />
                     </Stack>
                 </Box>
                 <Flex>

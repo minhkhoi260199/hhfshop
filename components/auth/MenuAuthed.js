@@ -68,7 +68,7 @@ export default function Authed() {
           />
           &nbsp;&nbsp;
           <Text fontSize="sm" fontWeight="normal">
-            {userInfo.username}
+            {userInfo.fullname}
           </Text>
         </Flex>
       </MenuItem>

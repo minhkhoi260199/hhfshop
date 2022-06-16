@@ -5,7 +5,7 @@ import { Box, Button, Flex, Input, Modal, ModalContent, ModalOverlay, Stack, Tex
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaEdit } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { closeUserInfoModal, selectUser } from "./authSlice";
+import { addLoginInfo, closeUserInfoModal, selectUser } from "./authSlice";
 import UserApi from "../../pages/api/userApi";
 
 export function UserInfoModal(){
@@ -16,7 +16,8 @@ export function UserInfoModal(){
     const user = useSelector(selectUser);
 
     const [username, setUsername] = useState(user.username);
-    const [password, setPassword] = useState(user.password);
+    const [password, setPassword] = useState("");
+    const [oldPass, setOldPass] = useState(user.password);
     const [showPass, setShowPass] = useState(false)
     const [fullname, setFullname] = useState(user.fullname);
     const [address, setAddress] = useState(user.address);
@@ -35,12 +36,10 @@ export function UserInfoModal(){
                     duration: 5000,
                     isClosable: true,
                     });
-                // dispatch(closeRegisterModal());
+                dispatch(addLoginInfo(data));
                 dispatch(closeUserInfoModal());
                 console.log("Search API success !!!");
             }
-            // setIsLoading(false)
-            // console.log("data"+ response);
         } catch (error) {
             toast({
                 title: `Thông tin không hợp lệ hoặc username đã được sử dụng bởi người khác`,
@@ -56,9 +55,9 @@ export function UserInfoModal(){
     }
 
     const handleSubmit = () => {
-        if(username=="" || password=="" || fullname=="" || address==""){
+        if(username=="" || fullname=="" || address==""){
             toast({
-                title: `Thông tin không được trống`,
+                title: `Bạn bỏ trống thông tin rồi !`,
                 status: "error",
                 position: "bottom",
                 variant: "left-accent",
@@ -70,7 +69,7 @@ export function UserInfoModal(){
             let data = {
                 "idUser" : user.idUser,
                 "username" : username,
-                "password" : password,
+                "password" : (password!="" ? password : oldPass),
                 "roleId" : user.roleId,
                 "fullname" : fullname,
                 "address" : address,
@@ -98,15 +97,17 @@ export function UserInfoModal(){
                          borderRadius='0px 0px 14px 14px' p={4}
                         textColor='#595243' bg='#f9f9f7'
                     >
+                        <Text>Số điện thoại:</Text>
                         <Input id='username' value={username}
                                 type='number'
                                 onChange={(e)=>setUsername(e.target.value)} 
                                 placeholder='Số điện thoại của bạn' />
+                        <Text>Mật khẩu:</Text>
                         <InputGroup size='md'>
                             <Input
                                 pr='4.5rem'
                                 type={showPass ? 'text' : 'password'}
-                                placeholder='Mật khẩu đăng nhập'
+                                placeholder='Để trống nếu không đổi mật khẩu'
                                 id='password' value={password}
                                 onChange={(e)=>setPassword(e.target.value)} 
                             />
@@ -116,12 +117,14 @@ export function UserInfoModal(){
                                 </Button>
                             </InputRightElement>
                         </InputGroup>
+                        <Text>Họ và tên:</Text>
                         <Input id='fullname' value={fullname}
                                 onChange={(e)=>setFullname(e.target.value)} 
                                 placeholder='Họ và tên' />
+                        <Text>Địa chỉ nhận hàng:</Text>
                         <Input id='address' value={address}
                                 onChange={(e)=>setAddress(e.target.value)} 
-                                placeholder='Địa chỉ mặc định' />               
+                                placeholder='19 Hai Bà Trưng, Quận 1, Tp.HCM' />               
                     </Stack>
                 </Box>
                 <Flex>
