@@ -25,6 +25,7 @@ function Cart(){
             const info = {
                 "name" : user.fullname,
                 "phone" : user.username,
+                "email" : user.email,
                 "province" : "",
                 "district" : "",
                 "ward" : "",

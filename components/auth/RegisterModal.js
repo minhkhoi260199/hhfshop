@@ -18,6 +18,7 @@ export function RegisterModal(){
     const [showPass, setShowPass] = useState(false)
     const [fullname, setFullname] = useState();
     const [address, setAddress] = useState();
+    const [email, setEmail] = useState();
 
     const register = async (data) =>{
         try {
@@ -55,7 +56,7 @@ export function RegisterModal(){
     }
 
     const handleSubmit = () => {
-        if(username=="" || password=="" || fullname=="" || address==""){
+        if(username=="" || password=="" || fullname=="" || address=="" || email==""){
             toast({
                 title: `Thông tin không được trống`,
                 status: "error",
@@ -72,6 +73,7 @@ export function RegisterModal(){
                 "roleId" : 3,
                 "fullname" : fullname,
                 "address" : address,
+                "email" : email,
                 "statusId" : 1
             }
             register(data);
@@ -119,10 +121,14 @@ export function RegisterModal(){
                         <Input id='fullname' value={fullname}
                                 onChange={(e)=>setFullname(e.target.value)} 
                                 placeholder='Nguyễn Văn A' />
-                                <Text>Địa chỉ giao hàng:</Text>
+                        <Text>Địa chỉ giao hàng:</Text>
                         <Input id='address' value={address}
                                 onChange={(e)=>setAddress(e.target.value)} 
                                 placeholder='19 Hai Bà Trưng, Quận 1, Tp.HCM' />
+                        <Text>Email:</Text>
+                        <Input id='email' type='email' value={email}
+                                onChange={(e)=>setEmail(e.target.value)} 
+                                placeholder='linhfarm@gmail.com' />
                     </Stack>
                 </Box>
                 <Flex>

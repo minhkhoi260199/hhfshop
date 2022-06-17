@@ -80,7 +80,7 @@ export function ShoppingHistoryModal() {
             <TableContainer>
               <Table variant="simple" size='sm'>
                 <TableCaption>
-                  Imperial to metric conversion factors
+                  Nhấn vào nút hồng để xem chi tiết đơn hàng
                 </TableCaption>
                 <Thead>
                   <Tr>
@@ -105,13 +105,13 @@ export function ShoppingHistoryModal() {
                     );
                   })}
                 </Tbody>
-                <Tfoot>
+                {/* <Tfoot>
                   <Tr>
                     <Th>To convert</Th>
                     <Th>into</Th>
                     <Th isNumeric>multiply by</Th>
                   </Tr>
-                </Tfoot>
+                </Tfoot> */}
               </Table>
             </TableContainer>
           </Box>

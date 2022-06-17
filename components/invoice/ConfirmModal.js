@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Spacer, Modal, ModalContent, ModalOverlay, Stack, Text } from "@chakra-ui/react"
-import { FaCheck, FaCheckDouble, FaRegTimesCircle, FaMapMarkerAlt, FaUserAlt, FaShippingFast } from "react-icons/fa";
+import { FaCheck, FaCheckDouble, FaRegTimesCircle, FaMapMarkerAlt, FaUserAlt, FaEnvelope } from "react-icons/fa";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from "../cart/cartSlice";
@@ -25,7 +25,7 @@ export function ConfirmModal(){
         return total += Number(item.productPrice)*Number(item.quantity)
     },0)
 
-    const shipfee = 30000
+    const shipfee = 0
 
     const totalPayment = amouth + shipfee
 
@@ -58,7 +58,6 @@ export function ConfirmModal(){
                 duration: 3000,
                 isClosable: true,
               });          
-            console.log(errol);
         }
     }
 
@@ -67,6 +66,7 @@ export function ConfirmModal(){
         const data = {
             "customerPhone" : invoice.phone,
             "customerName" : invoice.name,
+            "customerEmail" : invoice.email,
             "address" : invoice.addressDetail+', '+invoice.ward+', '+invoice.district+', '+invoice.province,
             "shippingFee" : shipfee,
             "orderAmount" : totalPayment,
@@ -108,9 +108,9 @@ export function ConfirmModal(){
                                 </Text>
                             </Flex>
                             <Flex>
-                                <FaShippingFast color="green" /> &nbsp; 
+                                <FaEnvelope color="green" /> &nbsp; 
                                 <Text ml={1}>
-                                    AhaMove Thần tốc
+                                    {invoice.email}
                                 </Text>
                             </Flex>
                         </Box>

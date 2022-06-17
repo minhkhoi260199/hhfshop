@@ -17,7 +17,7 @@ import {
   FaCheckDouble,
   FaMapMarkerAlt,
   FaUserAlt,
-  FaShippingFast,
+  FaEnvelope,
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { BASEURL } from "../helper/config";
@@ -75,8 +75,8 @@ export function HistoryDetailModal() {
                 <Text ml={1}>{order.orderInfo.address}</Text>
               </Flex>
               <Flex>
-                <FaShippingFast color="green" /> &nbsp;
-                <Text ml={1}>AhaMove Thần tốc</Text>
+                <FaEnvelope color="green" /> &nbsp;
+                <Text ml={1}>{order.orderInfo.email}</Text>
               </Flex>
             </Box>
             <Box>

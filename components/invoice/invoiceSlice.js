@@ -7,12 +7,12 @@ export const invoiceSlice = createSlice({
     shippingModalFlag: false,
     confirmModalFlag: false,
     value: {
-      "name" : "",
-      "phone" : "",
-      "province" : "Hồ Chí Minh",
-      "district" : "Quận 10",
-      "ward" : "phường 12",
-      "addressDetail" : "135 Thành Thái",
+      // "name" : "",
+      // "phone" : "",
+      // "province" : "Hồ Chí Minh",
+      // "district" : "Quận 10",
+      // "ward" : "phường 12",
+      // "addressDetail" : "135 Thành Thái",
     },
   },
   reducers: {

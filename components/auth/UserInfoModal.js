@@ -21,6 +21,7 @@ export function UserInfoModal(){
     const [showPass, setShowPass] = useState(false)
     const [fullname, setFullname] = useState(user.fullname);
     const [address, setAddress] = useState(user.address);
+    const [email, setEmail] = useState(user.email);
     
     const saveInfo = async (data) =>{
         try {
@@ -42,7 +43,7 @@ export function UserInfoModal(){
             }
         } catch (error) {
             toast({
-                title: `Thông tin không hợp lệ hoặc username đã được sử dụng bởi người khác`,
+                title: `Thông tin bạn nhập không hợp lệ hoặc username đã được sử dụng bởi người khác`,
                 status: "error",
                 position: "bottom",
                 variant: "left-accent",
@@ -55,7 +56,7 @@ export function UserInfoModal(){
     }
 
     const handleSubmit = () => {
-        if(username=="" || fullname=="" || address==""){
+        if(username=="" || fullname=="" || address=="" || email==""){
             toast({
                 title: `Bạn bỏ trống thông tin rồi !`,
                 status: "error",
@@ -73,6 +74,7 @@ export function UserInfoModal(){
                 "roleId" : user.roleId,
                 "fullname" : fullname,
                 "address" : address,
+                "email" : email,
                 "statusId" : user.statusId
             }
             saveInfo(data);
@@ -124,7 +126,11 @@ export function UserInfoModal(){
                         <Text>Địa chỉ nhận hàng:</Text>
                         <Input id='address' value={address}
                                 onChange={(e)=>setAddress(e.target.value)} 
-                                placeholder='19 Hai Bà Trưng, Quận 1, Tp.HCM' />               
+                                placeholder='19 Hai Bà Trưng, Quận 1, Tp.HCM' />
+                        <Text>Email:</Text>
+                        <Input id='email' type='email' value={email}
+                                onChange={(e)=>setEmail(e.target.value)} 
+                                placeholder='linhfarm@gmail.com' />             
                     </Stack>
                 </Box>
                 <Flex>
