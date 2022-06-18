@@ -12,7 +12,7 @@ export function OrderInfoModal(){
 
     const [name, setName] = useState(invoice.name);
     const [phone, setPhone] = useState(invoice.phone);
-    const [email, setEmail] = useState(user.email);
+    const [email, setEmail] = useState(invoice.email);
     const [province, setProvince] = useState(invoice.province);
     const [district, setDistrict] = useState(invoice.district);
     const [ward, setWard] = useState(invoice.ward);
@@ -78,7 +78,7 @@ export function OrderInfoModal(){
                         <Select id='province' value={province}
                                 onChange={(e)=>setProvince(e.target.value)} 
                                 placeholder='Chọn thành phố'>
-                            <option selected>Hồ Chí Minh</option>
+                            <option>Hồ Chí Minh</option>
                         </Select>                    
                         <Select id='district' value={district}
                                 onChange={(e)=>setDistrict(e.target.value)} 
