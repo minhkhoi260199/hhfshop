@@ -12,7 +12,15 @@ class ProductApi {
     getByCategory = (cateId) => {
         const url = "/product/getItemsByCate?cateId="+cateId;
         return axiosClient.get(url);
-    }
+    };
+    getProductDetail = (id) => {
+        const url = "/product/getProductReviews?id="+id;
+        return axiosClient.get(url);
+    };
+    saveReview = (data) => {
+        const url = "/product/saveReview";
+        return axiosClient.post(url, data);
+    };
     getCategories = () => {
         const url = "/category/getAll";
         return axiosClient.get(url);

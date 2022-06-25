@@ -18,7 +18,7 @@ import { addToCart } from "../cart/cartSlice";
 
 import { numberWithCommas } from "../helper/numberWithCommas";
 import { memo } from "react";
-import { FaAngleDoubleRight } from "react-icons/fa";
+import { FaAngleDoubleRight, FaStar } from "react-icons/fa";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -27,6 +27,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 
 import { BASEURL } from "../helper/config";
+import productApi from "../../pages/api/productApi";
+import { addDetailProduct, openDetailModal } from "../productDetail/detailSlice";
 
 //Product Item
 function Item(props) {
@@ -66,6 +68,32 @@ function Item(props) {
       isClosable: true,
     });
   };
+
+  const gotoDetail = async (id) =>{
+    try {
+        const response = await productApi.getProductDetail(id);
+        // console.log("data orders: "+ response);
+        if(response != null){
+          dispatch(addDetailProduct(response));
+          dispatch(openDetailModal());
+        }
+    } catch (error) {
+        toast({
+            title: `Đã có lỗi xảy ra !!`,
+            status: "error",
+            position: "bottom",
+            variant: "left-accent",
+            duration: 5000,
+            isClosable: true,
+            });   
+        console.log("API Fail !!");
+        console.log(error);
+    }
+  }
+
+  // const gotoDetail = () => {
+  //   loadDetail(idOrder);
+  // }
 
   return (
     <Box p={3} bg="#ffde46" color="#605439" borderRadius="14" marginBottom={4}>
@@ -134,6 +162,13 @@ function Item(props) {
           >
             {product.productName}
           </Text>
+          <Button padding='0'
+                  variant='solid'
+                  position='absolute'
+                  right='0px'
+                  top='0px'
+                  onClick={()=>gotoDetail(product.idProduct)}
+          ><FaStar color="green" fontSize='lg'/></Button>
           <Box
             paddingTop={0}
             minH="80px"

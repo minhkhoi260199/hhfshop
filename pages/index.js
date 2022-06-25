@@ -24,6 +24,8 @@ import { UserInfoModal } from "../components/auth/userInfoModal";
 import { selectHistoryDetailModalFlag, selectHistoryModalFlag } from "../components/histories/historySlice";
 import { ShoppingHistoryModal } from "../components/histories/ShoppingHistoryModal";
 import { HistoryDetailModal } from "../components/histories/HistoryDetailModal";
+import { selectDetailModalFlag } from "../components/productDetail/detailSlice";
+import { ProductDetailModal } from "../components/productDetail/ProductDetailModal";
 
 export default function Home() {
   
@@ -42,6 +44,7 @@ export default function Home() {
   const isOpenUserInfoModal = useSelector(selectUserInfoModalFlag);
   const isOpenHistoryModal = useSelector(selectHistoryModalFlag);
   const isOpenHistoryDetailModal = useSelector(selectHistoryDetailModalFlag);
+  const isOpenDetailProductModal = useSelector(selectDetailModalFlag);
 
   // useEffect(()=>{
   //   // if(products.length == 0){
@@ -121,6 +124,7 @@ export default function Home() {
       {isOpenUserInfoModal && <UserInfoModal/>}
       {isOpenHistoryModal && <ShoppingHistoryModal/>}
       {isOpenHistoryDetailModal && <HistoryDetailModal/>}
+      {isOpenDetailProductModal && <ProductDetailModal/>}
     </>
   );
 }

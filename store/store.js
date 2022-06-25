@@ -6,6 +6,7 @@ import productReducer from '../components/item/productSlice'
 import bestSellerReducer from '../components/bestSeller/bestSellerSlice'
 import authReducer from '../components/auth/authSlice'
 import historyReducer from '../components/histories/historySlice'
+import detailReducer from '../components/productDetail/detailSlice'
 
 export default configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export default configureStore({
     bestSeller: bestSellerReducer,
     category: categoryReducer,
     auth: authReducer,
+    detail: detailReducer,
     history: historyReducer
   },
 })
