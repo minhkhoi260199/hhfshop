@@ -34,11 +34,11 @@ const tabs = [
   },
   {
     name: "Giới thiệu",
-    path: "/info/comingSoon",
+    path: "/about",
   },
   {
     name: "Cộng tác",
-    path: "/info/comingSoon",
+    path: "/contact",
   },
 ];
 

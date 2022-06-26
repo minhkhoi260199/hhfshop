@@ -17,14 +17,7 @@ import { selectAddrModalFlag, selectConfirmModalFlag } from "../components/invoi
 import LoadingScreen from "../components/layout/loadingScreen";
 import Notify from "../components/ads/Notify";
 import CategoryBar from "../components/categoryBar/CategoryBar";
-import { selectLoginModalFlag, selectRegisterModalFlag, selectUserInfoModalFlag } from "../components/auth/authSlice";
-import { RegisterModal } from "../components/auth/RegisterModal";
-import { LoginModal } from "../components/auth/LoginModal";
-import { UserInfoModal } from "../components/auth/userInfoModal";
-import { selectHistoryDetailModalFlag, selectHistoryModalFlag } from "../components/histories/historySlice";
-import { ShoppingHistoryModal } from "../components/histories/ShoppingHistoryModal";
-import { HistoryDetailModal } from "../components/histories/HistoryDetailModal";
-import { selectDetailModalFlag } from "../components/productDetail/detailSlice";
+import { openSlider, selectDetailModalFlag } from "../components/productDetail/detailSlice";
 import { ProductDetailModal } from "../components/productDetail/ProductDetailModal";
 
 export default function Home() {
@@ -39,35 +32,11 @@ export default function Home() {
   const isOpenConfirmModal = useSelector(selectConfirmModalFlag);
   const isOpenAddrModal = useSelector(selectAddrModalFlag);
 
-  const isOpenRegisterModal = useSelector(selectRegisterModalFlag);
-  const isOpenLoginModal = useSelector(selectLoginModalFlag);
-  const isOpenUserInfoModal = useSelector(selectUserInfoModalFlag);
-  const isOpenHistoryModal = useSelector(selectHistoryModalFlag);
-  const isOpenHistoryDetailModal = useSelector(selectHistoryDetailModalFlag);
+
   const isOpenDetailProductModal = useSelector(selectDetailModalFlag);
 
-  // useEffect(()=>{
-  //   // if(products.length == 0){
-  //     setWidth(window.innerWidth);
-  //     const fetchCategoryList = async () => {
-  //       try {
-  //         const cates = await ProductApi.getCategories();
-  //         dispatch(addAllCategory(cates));
-  //         console.log("Category API success !!!");
-  //         // dispatch(offLoading())
-  //         // console.log("data"+ JSON.stringify(response));
-  //         console.log("category :"+ JSON.stringify(cates));
-  //       } catch (error) {
-  //         console.log("Product API Fail !!");
-  //         console.log(error);
-  //       }
-  //     }
-  //     fetchCategoryList();
-  //   // } else {
-  //     // dispatch(offLoading())
-  //   // }
-  // }, [])
   useEffect(()=>{
+    dispatch(openSlider());
     if(products.length == 0){
       setWidth(window.innerWidth);
       const fetchProductList = async () => {
@@ -119,11 +88,6 @@ export default function Home() {
       </Grid>
       {isOpenAddrModal && <OrderInfoModal /> }
       {isOpenConfirmModal && <ConfirmModal />}
-      {isOpenRegisterModal && <RegisterModal/>}
-      {isOpenLoginModal && <LoginModal/>}
-      {isOpenUserInfoModal && <UserInfoModal/>}
-      {isOpenHistoryModal && <ShoppingHistoryModal/>}
-      {isOpenHistoryDetailModal && <HistoryDetailModal/>}
       {isOpenDetailProductModal && <ProductDetailModal/>}
     </>
   );

@@ -24,7 +24,11 @@ import {
 } from "react-icons/fa";
 import { Button } from "@chakra-ui/react";
 import { numberWithCommas } from "../helper/numberWithCommas";
-import { addDetailProduct, closeDetailModal, selectDetailProduct } from "./detailSlice";
+import {
+  addDetailProduct,
+  closeDetailModal,
+  selectDetailProduct,
+} from "./detailSlice";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
@@ -80,46 +84,46 @@ export function ProductDetailModal() {
   };
 
   const saveReview = async (data) => {
-      try {
-        console.log("dataaaa : " + JSON.stringify(data));
-          const response = await productApi.saveReview(data)
-          // console.log(response);
-          toast({
-              title: `THÀNH CÔNG`,
-              description: "Cảm ơn bạn đã giành thời gian đánh giá sản phẩm.",
-              status: "success",
-              position: "bottom",
-              variant: "left-accent",
-              duration: 5000,
-              isClosable: true,
-            });
-            dispatch(closeDetailModal());
-          } catch (error) {
-          toast({
-              title: `CÓ LỖI XẢY RA`,
-              status: "error",
-              position: "bottom",
-              variant: "left-accent",
-              duration: 3000,
-              isClosable: true,
-            });          
-      }
-  }
-
-  const submitReview = () =>{
-    const data = {
-      "userId" : user.idUser,
-      "productId" : detail.product.idProduct,
-      "content" : content
+    try {
+      console.log("dataaaa : " + JSON.stringify(data));
+      const response = await productApi.saveReview(data);
+      // console.log(response);
+      toast({
+        title: `THÀNH CÔNG`,
+        description: "Cảm ơn bạn đã giành thời gian đánh giá sản phẩm.",
+        status: "success",
+        position: "bottom",
+        variant: "left-accent",
+        duration: 5000,
+        isClosable: true,
+      });
+      dispatch(closeDetailModal());
+    } catch (error) {
+      toast({
+        title: `CÓ LỖI XẢY RA`,
+        status: "error",
+        position: "bottom",
+        variant: "left-accent",
+        duration: 3000,
+        isClosable: true,
+      });
     }
+  };
+
+  const submitReview = () => {
+    const data = {
+      userId: user.idUser,
+      productId: detail.product.idProduct,
+      content: content,
+    };
     saveReview(data);
-  }
+  };
 
   return (
     <Modal isCentered size="xl" isOpen="true" motionPreset="slideInBottom">
       <ModalOverlay />
       <ModalContent p={0} pt={0} borderRadius="14px" bg="none">
-        <Box mb={1} border="1px #d7d7d7 solid" borderRadius="14">
+        <Box mb={1} border="1px #d7d7d7 solid" borderRadius="14" bg='#a6e9ca'>
           <Flex
             borderRadius="14px 14px 0px 0px"
             borderBottom="1px #d7d7d7 solid"
@@ -284,40 +288,57 @@ export function ProductDetailModal() {
               </GridItem>
             </Grid>
           </Box>
-          <Text bg="white">Đánh giá sản phẩm: (Tổng đánh giá:&nbsp;{detail.countReview})</Text>
-          <Box overflowY={"scroll"} maxH="500px" p={2} bg="white">
-          {detail.reviews.map((review) => {
+          <Text bg="#ffde46" fontWeight='bold' pl={2} pt={1}>
+            Đánh giá sản phẩm: (Tổng đánh giá:&nbsp;{detail.product.reviewsByIdProduct.length})
+          </Text>
+          <Box overflowY={"scroll"} maxH="300px" bg="#ffde46" mb={1}>
+            {detail.reviews.map((review) => {
+              let date = new Date(review.createdTime);
               return (
-                <Box>
+                <Box m={1} p={2} border='solid 1px white' bg='#a6e9ca' borderRadius={10}>
                   <Flex>
                     <Image
-                      boxSize="2rem"
+                      boxSize="1.7rem"
                       borderRadius="full"
-                      src="https://placekitten.com/120/120"
+                      src="https://placekitten.com/200/200"
                       alt="Simon the pensive"
-                      mr="12px"
-                      />
-                    <span>{review.userByUserId.fullname} - {review.createdTime}</span>
+                      mr="7px"
+                    />
+                    <Text>{review.userByUserId.fullname} -&nbsp;</Text>
+                    <Text fontSize="sm">
+                      {date.getDate() +
+                        "/" +
+                        (date.getMonth() + 1) +
+                        "/" +
+                        date.getFullYear() +
+                        " " +
+                        date.getHours() +
+                        ":" +
+                        date.getMinutes() +
+                        ":" +
+                        date.getSeconds()}
+                    </Text>
                   </Flex>
-                    <span>{review.content}</span>
-              </Box>
+                  <Text pl={2} pr={2} borderRadius={10} ml={10} bg='white'>{review.content}</Text>
+                </Box>
               );
             })}
-          {isLogin && 
-          <InputGroup size="md" bg="white">
-            <Input pr="4.5rem" placeholder="Đánh giá của bạn ..."
-                  onChange={(e)=>setContent(e.target.value)}
-                  value={content}
-
-            />
-            <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={submitReview}>
-                <FaPaperPlane />
-              </Button>
-            </InputRightElement>
-          </InputGroup>
-          }
           </Box>
+          {isLogin && (
+              <InputGroup size="md" bg="white" borderRadius='0px 0px 14px 14px' mb={2}>
+                <Input
+                  pr="4.5rem"
+                  placeholder="Đánh giá của bạn ..."
+                  onChange={(e) => setContent(e.target.value)}
+                  value={content}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={submitReview} colorScheme='pink'>
+                    <FaPaperPlane />
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+            )}
         </Box>
         <Button
           borderRadius="14"
@@ -336,5 +357,5 @@ export function ProductDetailModal() {
         </Button>
       </ModalContent>
     </Modal>
-  )};
-
+  );
+}
