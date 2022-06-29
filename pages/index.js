@@ -23,7 +23,7 @@ import { ProductDetailModal } from "../components/productDetail/ProductDetailMod
 export default function Home() {
   
   // const [isLoading, setIsLoading] = useState(true);
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState();
   
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoadingProduct);
@@ -57,7 +57,7 @@ export default function Home() {
   useEffect(()=>{
     window.addEventListener("resize", () => setWidth(window.innerWidth));
     return () => window.removeEventListener("resize", () => setWidth(window.innerWidth));
-  },[])
+  })
 
   return (
     <>

@@ -42,7 +42,7 @@ import "swiper/css/navigation";
 // export default function CategoryBar() {
 function CategoryBar() {
 
-  const [currentCate, setCurrentCate] = useState({categoryName: "Bán chạy", idCategory: 21});
+  const [currentCate, setCurrentCate] = useState({categoryName: "Dành cho bạn", idCategory: 0});
 
   const dispatch = useDispatch();
   const categories = useSelector(selectAllCategory);
@@ -67,7 +67,7 @@ function CategoryBar() {
   }, []);
 
   useEffect(()=>{
-    if(!isLoading){
+    if(!isLoading && currentCate.idCategory!=0){
       const loadingProductByCate = async () =>{
               dispatch(onLoadingProduct());
               try {
