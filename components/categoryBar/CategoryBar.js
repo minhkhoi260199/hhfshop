@@ -138,6 +138,7 @@ function CategoryBar() {
     <Box
       p={3}
       borderTop="1px solid #5f5438"
+      borderBottom="1px solid #5f5438"
       textAlign="center"
       mb={2}
     >

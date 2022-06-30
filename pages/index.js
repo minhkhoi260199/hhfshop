@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +23,7 @@ import { ProductDetailModal } from "../components/productDetail/ProductDetailMod
 export default function Home() {
   
   // const [isLoading, setIsLoading] = useState(true);
-  const [width, setWidth] = useState();
+  const [width, setWidth] = useState(768);
   
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoadingProduct);
@@ -57,7 +57,7 @@ export default function Home() {
   useEffect(()=>{
     window.addEventListener("resize", () => setWidth(window.innerWidth));
     return () => window.removeEventListener("resize", () => setWidth(window.innerWidth));
-  })
+  }, [])
 
   return (
     <>
@@ -71,10 +71,13 @@ export default function Home() {
             {width < 768 && <SearchBar />}  
           </Box>
           { isLoading && <LoadingScreen cursor="wait"/> }
-          { 
+          { (products.length>0) 
+          ?
             products.map((item) => {
               return <Item key={item.idProduct} product={item} />;
             })
+          :
+            <Text fontSize="xl" fontWeight="bold" textAlign="center"> Không có kết quả tìm kiếm ! </Text>
           }
         </GridItem>
         <GridItem colSpan={1} display={{ base: "none", md: "block" }}>
