@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { addInfo, openAddrModal } from "../invoice/invoiceSlice"
 import { FaCartArrowDown } from "react-icons/fa";
 import { selectIsLogin, selectUser } from "../auth/authSlice";
+import { useToast } from "@chakra-ui/react";
 
 function Cart(){
 
@@ -19,21 +20,33 @@ function Cart(){
     },0)
 
     const dispatch = useDispatch();
+    const toast = useToast();
 
     function handleSubmit(){
-        if(isLogin){
+        if (cart.length > 0) {
+          if (isLogin) {
             const info = {
-                "name" : user.fullname,
-                "phone" : user.username,
-                "email" : user.email,
-                "province" : "",
-                "district" : "",
-                "ward" : "",
-                "addressDetail" : user.address,
-            }
-            dispatch(addInfo(info))
+              name: user.fullname,
+              phone: user.username,
+              email: user.email,
+              province: "",
+              district: "",
+              ward: "",
+              addressDetail: user.address,
+            };
+            dispatch(addInfo(info));
+          } else {
+            dispatch(openAddrModal());
+          }
         } else {
-            dispatch(openAddrModal())
+          toast({
+            title: `Giỏ hàng trống !!`,
+            status: "error",
+            position: "bottom",
+            variant: "left-accent",
+            duration: 5000,
+            isClosable: true,
+          });
         }
     }
 
