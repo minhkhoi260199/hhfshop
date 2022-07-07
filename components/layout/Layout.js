@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectLoginModalFlag, selectRegisterModalFlag, selectUserInfoModalFlag } from "../auth/authSlice";
 import { LoginModal } from "../auth/LoginModal";
 import { RegisterModal } from "../auth/RegisterModal";
-import { UserInfoModal } from "../auth/userInfoModal";
+import { UserInfoModal } from "../auth/UserInfoModal";
 import { HistoryDetailModal } from "../histories/HistoryDetailModal";
 import { selectHistoryDetailModalFlag, selectHistoryModalFlag } from "../histories/historySlice";
 import { ShoppingHistoryModal } from "../histories/ShoppingHistoryModal";
