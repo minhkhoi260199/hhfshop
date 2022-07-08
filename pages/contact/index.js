@@ -89,25 +89,23 @@ function Contact() {
         <Text fontSize="md" fontWeight="bold" as="u">
           CHI NHÁNH HỒ CHÍ MINH:
         </Text>
-        <Text fontSize="md">136 Nguyễn Hồng Đào, Phường 14, Quận Tân Bình</Text>
-        <Text fontSize="md">93 Rạch Bùng Binh, Phường 9, Quận 3</Text>
-        <Text fontSize="md">26 Lý Tự Trọng, Phường Bến Nghé, Quận 1</Text>
+        {/* <Text fontSize="md">A06 Đường TTN17 Khu 10HA, KP4, Tân Thới Nhất Q12</Text> */}
+        <Flex><FaMapMarkedAlt/>&nbsp;&nbsp;&nbsp;<Link href='https://goo.gl/maps/hGDZDwNuSmWMqPW88' fontSize='sm' color='red.700' isExternal >Dẫn đường đến shop</Link></Flex>
         <Text fontSize="md" mb={2}>
-          57 Nguyễn Gia Trí (D2), Phường 25, Quận Bình Thạnh
+        A06 Đường TTN17 Khu 10HA, KP4, Tân Thới Nhất Q12
         </Text>
-        <Text fontSize="md" fontWeight="bold" as="u">
+        {/* <Text fontSize="md" fontWeight="bold" as="u">
           CHI NHÁNH TÂY NINH:
         </Text>
         <Text fontSize="md" mb={8}>
           444 Đường 30/4, Tây Ninh
-        </Text>
+        </Text> */}
         <Text fontSize="lg" fontWeight="bold" as="u">
           * LIÊN HỆ HỖ TRỢ ONLINE:
         </Text>
-        <Text fontSize="md">Giờ làm việc: 10A.M - 10P.M</Text>
-        <Text fontSize="md">0907 799 384 - 0902 638 020</Text>
-        <Text fontSize="md">linhfarm.store@gmail.com</Text>
-        <Text fontSize="md">linhfarm@gmail.com</Text>
+        <Text fontSize="md">Giờ làm việc: 6A.M - 6P.M</Text>
+        <Text fontSize="md">0399 945 680 - 0969 069 589</Text>
+        <Text fontSize="md">hiephoafarm@gmail.com</Text>
       </GridItem>
       <GridItem
         colSpan={{ base: "2", md: "1" }}
