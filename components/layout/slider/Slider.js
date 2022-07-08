@@ -9,15 +9,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 
 const images = [
-  {
-    name: "banner0.jpg",
-  },
+  // {
+  //   name: "banner0.jpg",
+  // },
   // {
   //   name: "banner1.jpg",
   // },
-  // {
-  //   name: "banner2.jpg",
-  // },
+  {
+    name: "banner2.jpg",
+  },
 ];
 
 function Slider() {

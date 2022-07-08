@@ -93,9 +93,9 @@ function Contact() {
           CHI NHÁNH HỒ CHÍ MINH:
         </Text>
         {/* <Text fontSize="md">A06 Đường TTN17 Khu 10HA, KP4, Tân Thới Nhất Q12</Text> */}
-        <Flex><FaMapMarkedAlt/>&nbsp;&nbsp;&nbsp;<Link href='https://goo.gl/maps/hGDZDwNuSmWMqPW88' fontSize='sm' color='red.700' isExternal >Dẫn đường đến shop</Link></Flex>
+        <Flex pl={3}><FaMapMarkedAlt/>&nbsp;&nbsp;&nbsp;<Link href='https://goo.gl/maps/bnJrJ9qLGZkjrDGT6' fontSize='sm' color='red.700' isExternal >Dẫn đường đến shop</Link></Flex>
         <Text fontSize="md" mb={2}>
-        A06 Đường TTN17 Khu 10HA, KP4, Tân Thới Nhất Q12
+        92/6 Lò Siêu, phường 16, Quận 11, Thành phố Hồ Chí Minh
         </Text>
         {/* <Text fontSize="md" fontWeight="bold" as="u">
           CHI NHÁNH TÂY NINH:
